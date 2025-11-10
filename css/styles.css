@@ -393,6 +393,62 @@ body {
     margin-bottom: 32px;
 }
 
+/* Pattern Preview Gradients */
+.pattern-preview {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.baby-gradient {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+}
+
+.clothing-gradient {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+}
+
+.home-gradient {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%) !important;
+}
+
+.pattern-icon {
+    font-size: 64px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.generate-pattern-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 15px;
+    transition: var(--transition);
+    display: inline-block;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+}
+
+.generate-pattern-btn:hover {
+    color: var(--primary-dark);
+    transform: translateX(4px);
+}
+
+.difficulty {
+    background: none !important;
+    color: var(--text-light) !important;
+    padding: 0 !important;
+    font-weight: 500 !important;
+}
+
 /* Buttons */
 .btn {
     display: inline-block;

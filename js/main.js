@@ -163,6 +163,17 @@ categoryBtns.forEach(btn => {
     });
 });
 
+// Pattern card buttons
+const patternCardBtns = document.querySelectorAll('.generate-pattern-btn');
+patternCardBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const card = btn.closest('.pattern-card');
+        const patternRequest = card.getAttribute('data-pattern');
+        patternInput.value = patternRequest;
+        generatePattern();
+    });
+});
+
 // Generate pattern
 if (generateBtn) {
     generateBtn.addEventListener('click', generatePattern);
