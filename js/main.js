@@ -606,47 +606,188 @@ function generatePonchoPattern(request) {
 
 function generateBlanketPattern(request) {
     return {
-        title: `${capitalize(request)} Pattern`,
+        title: `Complete ${capitalize(request)} Pattern`,
         content: `
             <h3>Materials Needed</h3>
             <ul>
-                <li>Worsted weight yarn (approx. 800-1200 yards) in desired colors</li>
-                <li>5.5mm (I/9) crochet hook</li>
+                <li>Worsted weight yarn (4) - approximately 800-1200 yards for baby blanket, 1500-2000 yards for throw</li>
+                <li>5.5mm (I/9) crochet hook (or size needed for gauge)</li>
                 <li>Yarn needle for weaving ends</li>
+                <li>Stitch markers (optional)</li>
+                <li>Measuring tape</li>
                 <li>Scissors</li>
             </ul>
             
             <h3>Pattern Details</h3>
-            <p><strong>Finished Size:</strong> Approximately 36" x 40" (baby blanket size)</p>
-            <p><strong>Gauge:</strong> 14 stitches x 16 rows = 4 inches in pattern</p>
-            <p><strong>Skill Level:</strong> Easy</p>
+            <p><strong>Finished Sizes:</strong></p>
+            <ul>
+                <li>Baby Blanket: 36" x 40" (foundation chain 127)</li>
+                <li>Lap Throw: 40" x 50" (foundation chain 141)</li>
+                <li>Afghan: 50" x 60" (foundation chain 176)</li>
+            </ul>
+            <p><strong>Gauge:</strong> 14 stitches x 16 rows = 4 inches in single crochet</p>
+            <p><strong>Skill Level:</strong> Beginner</p>
             
-            <h3>Pattern Instructions</h3>
-            <p><strong>Foundation:</strong> Ch 127 (or any multiple of 4 + 3)</p>
+            <h3>Abbreviations</h3>
+            <ul>
+                <li><strong>ch</strong> - chain</li>
+                <li><strong>sc</strong> - single crochet</li>
+                <li><strong>hdc</strong> - half double crochet</li>
+                <li><strong>dc</strong> - double crochet</li>
+                <li><strong>st(s)</strong> - stitch(es)</li>
+                <li><strong>sl st</strong> - slip stitch</li>
+            </ul>
             
-            <h4>Row 1:</h4>
-            <p>Sc in 2nd ch from hook and in each ch across, turn [126 sc]</p>
+            <h3>Main Blanket Body</h3>
             
-            <h4>Row 2-100:</h4>
-            <p>Ch 1, sc in each st across, turn [126 sc]</p>
-            <p><em>Continue until blanket reaches desired length</em></p>
-            
-            <h4>Border (Optional):</h4>
+            <h4>Foundation Row:</h4>
             <ol>
-                <li><strong>Rnd 1:</strong> Work sc evenly around entire edge, working 3 sc in each corner</li>
-                <li><strong>Rnd 2:</strong> Ch 1, sc in each st around, working 3 sc in each corner st</li>
-                <li><strong>Rnd 3:</strong> Sl st in each st around for decorative edge</li>
+                <li>Ch 127 for baby blanket (141 for lap throw, 176 for afghan)</li>
+                <li>Or chain to desired width in multiples of 2 + 1</li>
             </ol>
             
-            <p>Fasten off and weave in all ends.</p>
+            <h4>Row 1 (Right Side):</h4>
+            <p>Sc in 2nd ch from hook and in each ch across, turn [126 sc for baby blanket]</p>
             
-            <h3>Tips</h3>
+            <h4>Row 2:</h4>
+            <p>Ch 1 (does not count as st), sc in each st across, turn [126 sc]</p>
+            
+            <h4>Rows 3-140 (or to desired length):</h4>
+            <p>Repeat Row 2 until blanket measures approximately 38-39 inches (or 2 inches less than desired final length)</p>
+            <p><em>Count your stitches every 10 rows to ensure you're maintaining the correct width</em></p>
+            
+            <h3>Border (Highly Recommended)</h3>
+            <p>Do not fasten off after last row. Continue working around entire blanket:</p>
+            
+            <h4>Round 1:</h4>
+            <ol>
+                <li>Ch 1, work 3 sc in corner st (to turn corner)</li>
+                <li>Work sc evenly down side edge (approximately 3 sc for every 4 rows)</li>
+                <li>Work 3 sc in next corner</li>
+                <li>Sc in each st across bottom edge</li>
+                <li>Work 3 sc in next corner</li>
+                <li>Work sc evenly up other side edge</li>
+                <li>Work 3 sc in last corner</li>
+                <li>Sc in each remaining st across top, join with sl st to first sc</li>
+            </ol>
+            
+            <h4>Round 2:</h4>
+            <p>Ch 1, sc in each st around, working 3 sc in each corner middle st, join with sl st to first sc</p>
+            
+            <h4>Round 3:</h4>
+            <p>Ch 1, sc in each st around, working 3 sc in each corner middle st, join with sl st to first sc</p>
+            
+            <h4>Round 4 (Optional Decorative Edge):</h4>
+            <p><strong>Option A - Shell Edge:</strong> *Skip 2 sts, 5 dc in next st, skip 2 sts, sl st in next st*, repeat around</p>
+            <p><strong>Option B - Picot Edge:</strong> *Sc in next 3 sts, ch 3, sl st in first ch (picot made)*, repeat around</p>
+            <p><strong>Option C - Simple Edge:</strong> Sl st in each st around for a neat finish</p>
+            
+            <p>Fasten off and weave in all ends securely.</p>
+            
+            <h3>Stitch Pattern Variations</h3>
+            
+            <h4>Textured Pattern (Instead of Plain SC):</h4>
+            <p><strong>Row 1:</strong> Sc in 2nd ch from hook and across, turn</p>
+            <p><strong>Row 2:</strong> Ch 2 (counts as hdc), hdc in each st across, turn</p>
+            <p><strong>Row 3:</strong> Ch 1, sc in each st across, turn</p>
+            <p>Repeat Rows 2-3 for textured look</p>
+            
+            <h4>Granny Stripe Pattern:</h4>
+            <p><strong>Foundation:</strong> Ch in multiples of 3 + 2</p>
+            <p><strong>Row 1:</strong> Dc in 4th ch from hook, dc in next ch, *ch 1, skip 1 ch, dc in next 3 ch*, repeat across</p>
+            <p><strong>Row 2:</strong> Ch 3, turn, 2 dc in first ch-1 space, *ch 1, 3 dc in next ch-1 space*, repeat across</p>
+            <p>Repeat Row 2 for pattern</p>
+            
+            <h4>V-Stitch Pattern:</h4>
+            <p><strong>Foundation:</strong> Ch in multiples of 3 + 1</p>
+            <p><strong>Row 1:</strong> (Dc, ch 1, dc) in 5th ch from hook (V-st made), *skip 2 ch, V-st in next ch*, repeat across</p>
+            <p><strong>Row 2:</strong> Ch 3, turn, V-st in each ch-1 space across</p>
+            <p>Repeat Row 2 for pattern</p>
+            
+            <h3>Color Pattern Ideas</h3>
             <ul>
-                <li>✨ Keep tension consistent for even texture</li>
-                <li>✨ Count stitches periodically to maintain width</li>
-                <li>✨ Block finished blanket for professional look</li>
-                <li>✨ Add stripes by changing colors every 4-6 rows</li>
+                <li>🌈 <strong>Simple Stripes:</strong> Change colors every 4-6 rows</li>
+                <li>🎨 <strong>Gradient:</strong> Use colors from light to dark or vice versa</li>
+                <li>⬜ <strong>Checkerboard:</strong> Alternate 2 colors every 10 rows and 10 stitches</li>
+                <li>🌟 <strong>Random Stripes:</strong> Use scrap yarn in random width stripes</li>
+                <li>💙 <strong>Ombre:</strong> Gradually transition through shades of one color</li>
             </ul>
+            
+            <h3>Size Adjustments</h3>
+            <ul>
+                <li><strong>Wider Blanket:</strong> Add more chains in multiples of 2 to foundation</li>
+                <li><strong>Narrower Blanket:</strong> Chain fewer stitches (subtract in multiples of 2)</li>
+                <li><strong>Longer Blanket:</strong> Work more rows until desired length</li>
+                <li><strong>Shorter Blanket:</strong> Work fewer rows</li>
+            </ul>
+            
+            <h3>Yarn Requirements by Size</h3>
+            <ul>
+                <li><strong>Baby (36x40"):</strong> 800-1200 yards</li>
+                <li><strong>Lap (40x50"):</strong> 1500-1800 yards</li>
+                <li><strong>Afghan (50x60"):</strong> 2000-2400 yards</li>
+                <li><strong>Twin (60x80"):</strong> 3000-3500 yards</li>
+            </ul>
+            
+            <h3>Pro Tips for Success</h3>
+            <ul>
+                <li>✨ <strong>Keep tension consistent</strong> - This is crucial for even texture</li>
+                <li>✨ <strong>Count stitches regularly</strong> - Check every 10 rows to catch mistakes early</li>
+                <li>✨ <strong>Use stitch markers</strong> - Mark every 20-25 stitches for easy counting</li>
+                <li>✨ <strong>Join new yarn at row ends</strong> - This hides the join better</li>
+                <li>✨ <strong>Weave ends as you go</strong> - Don't save them all for the end!</li>
+                <li>✨ <strong>Block when finished</strong> - Pin to size, spray with water, let dry flat</li>
+                <li>✨ <strong>Work in good light</strong> - Prevents eye strain and mistakes</li>
+                <li>✨ <strong>Take breaks</strong> - Your hands and shoulders will thank you</li>
+            </ul>
+            
+            <h3>Finishing & Care</h3>
+            
+            <h4>Blocking Your Blanket:</h4>
+            <ol>
+                <li>Pin blanket to blocking mats or carpet to desired dimensions</li>
+                <li>Make sure corners are square (use measuring tape to check)</li>
+                <li>Spray evenly with water or use steam (check yarn label first!)</li>
+                <li>Let dry completely before unpinning (24-48 hours)</li>
+            </ol>
+            
+            <h4>Weaving in Ends:</h4>
+            <ol>
+                <li>Thread yarn tail through needle</li>
+                <li>Weave through several stitches on wrong side</li>
+                <li>Change direction and weave back through different stitches</li>
+                <li>Pull gently to tension, then trim close to work</li>
+            </ol>
+            
+            <h4>Washing Instructions:</h4>
+            <ul>
+                <li>🧼 Check yarn label for specific care instructions</li>
+                <li>💧 Most acrylic: Machine wash cold, tumble dry low</li>
+                <li>🐑 Wool or natural fibers: Hand wash cold, lay flat to dry</li>
+                <li>🌊 First wash: Wash separately in case of color bleeding</li>
+                <li>📏 Reshape while damp to maintain size</li>
+            </ul>
+            
+            <h3>Troubleshooting Common Issues</h3>
+            <ul>
+                <li>📐 <strong>Blanket getting wider:</strong> You're likely adding stitches. Count carefully!</li>
+                <li>📉 <strong>Blanket getting narrower:</strong> You're missing stitches at row ends</li>
+                <li>🌊 <strong>Edges wavy:</strong> Tension is too loose, try smaller hook</li>
+                <li>📏 <strong>Edges curling:</strong> Tension too tight, try larger hook or add border</li>
+                <li>🎯 <strong>Rows uneven:</strong> Place marker in first stitch to identify row start</li>
+                <li>🧵 <strong>Running out of yarn:</strong> Join new ball at end of row for neater join</li>
+            </ul>
+            
+            <h3>Make It Special</h3>
+            <ul>
+                <li>🏷️ Add a handmade tag with care instructions</li>
+                <li>🎁 Gift wrap in coordinating tissue paper and ribbon</li>
+                <li>📸 Take progress photos to document your work</li>
+                <li>💝 Personalize with recipient's favorite colors</li>
+                <li>✍️ Include a note card about the pattern and yarn used</li>
+            </ul>
+            
+            <p><strong>Happy Crocheting! Your blanket will be treasured for years! 🧶✨</strong></p>
         `
     };
 }
