@@ -40,19 +40,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Newsletter form submission
-const newsletterForm = document.querySelector('.newsletter-form');
-if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = newsletterForm.querySelector('input[type="email"]').value;
-        
-        // Here you would integrate with your email service (Mailchimp, ConvertKit, etc.)
-        alert(`Thanks for subscribing! We'll send patterns to ${email}`);
-        newsletterForm.reset();
-    });
-}
-
 // Add animation on scroll
 const observerOptions = {
     threshold: 0.1,
@@ -419,8 +406,6 @@ function generateAmigurumiPattern(request) {
                 <li>🌟 Add stripes or color changes to limbs</li>
                 <li>💝 Make it bigger or smaller by changing hook size</li>
             </ul>
-            
-            <p><em><strong>Note:</strong> This is a mock AI-generated pattern for demonstration. For real AI-generated patterns, connect to OpenAI API (see API_SETUP.md)</em></p>
         `
     };
 }
@@ -921,8 +906,6 @@ function generateUniversalPattern(request) {
                 <li>Designing matching accessories or complementary pieces</li>
                 <li>Teaching someone else how to make it!</li>
             </ul>
-            
-            <p><em><strong>Note:</strong> This is a comprehensive template pattern. For AI-generated custom patterns specific to your exact request, connect to the OpenAI API (see API_SETUP.md). The mock generator provides a solid starting framework that you can adapt to your specific needs!</em></p>
             
             <p><strong>Happy Crocheting! 🧶✨</strong></p>
         `
