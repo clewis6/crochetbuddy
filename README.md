@@ -1,21 +1,19 @@
-# CrochetBuddy - Premium Crochet Blog Website
+# CrochetBuddy - AI-Powered Crochet Pattern Generator 🧶✨
 
-A professional, monetization-ready crochet blog featuring patterns, tutorials, and inspiration for all skill levels.
+Your personal AI assistant that creates custom crochet patterns on demand! Just describe what you want to make, and CrochetBuddy generates a detailed, ready-to-use pattern instantly.
 
-## 🎨 Features
+## 🤖 Core Features
 
+- **AI Pattern Generator**: Type what you want to crochet → Get instant custom patterns
+- **Smart Categories**: Amigurumi, Baby Stuff, Adult Clothing, Home Decor
+- **Quick Suggestions**: One-click pattern ideas (bunny, blanket, cardigan, etc.)
+- **Pattern Library**: Browse AI-generated community patterns
+- **Copy & Save**: Download patterns as PDF or copy to clipboard
 - **Premium Design**: Modern, clean aesthetic with professional typography
-- **Strategic Ad Placements**: Multiple ad zones optimized for revenue
-  - Header leaderboard (728x90)
-  - Sidebar ads (300x250, 300x600)
-  - In-content responsive ads
-  - Footer ad units
-- **Category Organization**: Amigurumi, Baby Stuff, Adult Clothing, Home Decor
+- **Strategic Ad Placements**: Multiple revenue-optimized zones
 - **Fully Responsive**: Perfect on mobile, tablet, and desktop
-- **SEO Optimized**: Semantic HTML, meta tags, proper heading structure
-- **Fast Loading**: Optimized CSS, efficient JavaScript, minimal dependencies
-- **Newsletter Integration**: Email capture for building audience
-- **Social Media Ready**: Share buttons and follow widgets
+- **Newsletter Integration**: Build your audience
+- **Zero Image Dependencies**: Text-based patterns, no photos needed
 
 ## 📁 Project Structure
 
@@ -33,18 +31,28 @@ crochetblog/
 └── README.md           # This file
 ```
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-### Option 1: Simple Setup (No Installation)
+### Try It Now (Mock Mode)
 1. Open `index.html` in your web browser
-2. Start customizing content and adding your patterns
+2. Type what you want to crochet (e.g., "cute amigurumi cat")
+3. Click "Generate My Pattern"
+4. Get an instant pattern template!
 
-### Option 2: Local Server (Recommended)
+**Note**: Currently uses mock patterns. See [API_SETUP.md](API_SETUP.md) to connect real AI.
+
+### Connect Real AI (OpenAI/ChatGPT)
 ```powershell
-# Using Python (if installed)
-python -m http.server 8080
+# See API_SETUP.md for detailed instructions
+# You'll need:
+# 1. OpenAI API key
+# 2. Backend server or serverless function
+# 3. Environment variables setup
+```
 
-# Using Node.js http-server (if installed)
+### Local Development
+```powershell
+# Simple HTTP server
 npx http-server -p 8080
 
 # Then open: http://localhost:8080

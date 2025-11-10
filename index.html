@@ -47,11 +47,49 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h2 class="hero-title">Discover Beautiful Crochet Patterns</h2>
-                <p class="hero-subtitle">From adorable amigurumi to stylish adult clothing - free patterns, tutorials, and inspiration for every skill level</p>
-                <div class="hero-cta">
-                    <a href="#latest" class="btn btn-primary">Explore Patterns</a>
-                    <a href="#newsletter" class="btn btn-secondary">Get Free Patterns</a>
+                <h2 class="hero-title">Your AI Crochet Pattern Generator</h2>
+                <p class="hero-subtitle">Tell me what you want to crochet, and I'll create a custom pattern just for you! ✨</p>
+                
+                <!-- AI Pattern Generator -->
+                <div class="pattern-generator">
+                    <div class="generator-input-wrapper">
+                        <textarea 
+                            id="patternRequest" 
+                            class="pattern-input" 
+                            placeholder="Example: 'Create a small amigurumi octopus for a baby' or 'I want to make a chunky infinity scarf'"
+                            rows="3"
+                        ></textarea>
+                        <button id="generatePattern" class="btn btn-primary btn-generate">
+                            <span class="btn-text">Generate My Pattern</span>
+                            <span class="btn-loading" style="display: none;">✨ Creating...</span>
+                        </button>
+                    </div>
+                    <div class="quick-suggestions">
+                        <span class="suggestion-label">Quick ideas:</span>
+                        <button class="suggestion-btn" data-prompt="cute amigurumi bunny">🐰 Bunny</button>
+                        <button class="suggestion-btn" data-prompt="baby blanket with simple stitch">👶 Baby Blanket</button>
+                        <button class="suggestion-btn" data-prompt="cozy adult cardigan">🧥 Cardigan</button>
+                        <button class="suggestion-btn" data-prompt="small amigurumi mushroom">🍄 Mushroom</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Output Section -->
+    <section id="patternOutput" class="pattern-output" style="display: none;">
+        <div class="container">
+            <div class="output-card">
+                <div class="output-header">
+                    <h2 id="patternTitle">Your Custom Pattern</h2>
+                    <button id="savePattern" class="btn btn-secondary btn-sm">📥 Save Pattern</button>
+                </div>
+                <div id="patternContent" class="output-content">
+                    <!-- Generated pattern will appear here -->
+                </div>
+                <div class="output-actions">
+                    <button id="generateAnother" class="btn btn-primary">Create Another Pattern</button>
+                    <button id="copyPattern" class="btn btn-secondary">📋 Copy to Clipboard</button>
                 </div>
             </div>
         </div>
@@ -60,28 +98,28 @@
     <!-- Categories Section -->
     <section class="categories">
         <div class="container">
-            <h2 class="section-title">Browse by Category</h2>
+            <h2 class="section-title">What Can I Make For You?</h2>
             <div class="category-grid">
-                <a href="#amigurumi" class="category-card">
+                <button class="category-card category-btn" data-category="amigurumi">
                     <div class="category-icon">🧸</div>
                     <h3>Amigurumi</h3>
                     <p>Cute stuffed animals & characters</p>
-                </a>
-                <a href="#baby" class="category-card">
+                </button>
+                <button class="category-card category-btn" data-category="baby">
                     <div class="category-icon">👶</div>
                     <h3>Baby Stuff</h3>
                     <p>Blankets, booties & more</p>
-                </a>
-                <a href="#clothing" class="category-card">
+                </button>
+                <button class="category-card category-btn" data-category="clothing">
                     <div class="category-icon">👔</div>
                     <h3>Adult Clothing</h3>
                     <p>Sweaters, scarves & accessories</p>
-                </a>
-                <a href="#home" class="category-card">
+                </button>
+                <button class="category-card category-btn" data-category="home">
                     <div class="category-icon">🏠</div>
                     <h3>Home Decor</h3>
                     <p>Pillows, blankets & decorations</p>
-                </a>
+                </button>
             </div>
         </div>
     </section>
@@ -94,13 +132,14 @@
                 <main class="main-content">
                     <!-- Featured Posts -->
                     <section class="featured-posts" id="latest">
-                        <h2 class="section-title">Latest Patterns & Tutorials</h2>
+                        <h2 class="section-title">Recent Community Patterns</h2>
+                        <p class="section-subtitle">Patterns created by our AI for the community</p>
                         <div class="blog-grid">
                             <!-- Post 1 -->
                             <article class="blog-card">
-                                <div class="blog-image">
+                                <div class="blog-image pattern-preview">
                                     <span class="category-badge amigurumi">Amigurumi</span>
-                                    <img src="images/placeholder-1.jpg" alt="Cute Crochet Bunny Pattern" onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'">
+                                    <div class="pattern-icon">🧸</div>
                                 </div>
                                 <div class="blog-content">
                                     <h3 class="blog-title">Adorable Crochet Bunny Pattern - Free Tutorial</h3>
@@ -115,9 +154,9 @@
 
                             <!-- Post 2 -->
                             <article class="blog-card">
-                                <div class="blog-image">
+                                <div class="blog-image pattern-preview baby-gradient">
                                     <span class="category-badge baby">Baby Stuff</span>
-                                    <img src="images/placeholder-2.jpg" alt="Baby Blanket Pattern" onerror="this.style.background='linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'">
+                                    <div class="pattern-icon">👶</div>
                                 </div>
                                 <div class="blog-content">
                                     <h3 class="blog-title">Cozy Baby Blanket with Ripple Stitch</h3>

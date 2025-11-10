@@ -132,6 +132,201 @@ function shareOnSocial(platform, url, title) {
     }
 }
 
+// AI Pattern Generator
+const patternInput = document.getElementById('patternRequest');
+const generateBtn = document.getElementById('generatePattern');
+const patternOutput = document.getElementById('patternOutput');
+const patternContent = document.getElementById('patternContent');
+const patternTitle = document.getElementById('patternTitle');
+const generateAnotherBtn = document.getElementById('generateAnother');
+const copyPatternBtn = document.getElementById('copyPattern');
+const savePatternBtn = document.getElementById('savePattern');
+
+// Suggestion buttons
+const suggestionBtns = document.querySelectorAll('.suggestion-btn');
+suggestionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const prompt = btn.getAttribute('data-prompt');
+        patternInput.value = prompt;
+        generatePattern();
+    });
+});
+
+// Category buttons
+const categoryBtns = document.querySelectorAll('.category-btn');
+categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+        patternInput.value = `Create a ${category} pattern`;
+        patternInput.focus();
+        patternInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+});
+
+// Generate pattern
+if (generateBtn) {
+    generateBtn.addEventListener('click', generatePattern);
+    
+    patternInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+            generatePattern();
+        }
+    });
+}
+
+async function generatePattern() {
+    const request = patternInput.value.trim();
+    
+    if (!request) {
+        alert('Please describe what you want to crochet! 🧶');
+        return;
+    }
+    
+    // Show loading state
+    const btnText = generateBtn.querySelector('.btn-text');
+    const btnLoading = generateBtn.querySelector('.btn-loading');
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+    generateBtn.disabled = true;
+    
+    try {
+        // Call OpenAI API or use a mock pattern for now
+        const pattern = await generateCrochetPattern(request);
+        
+        // Display the pattern
+        patternTitle.textContent = pattern.title;
+        patternContent.innerHTML = pattern.content;
+        
+        // Show output section
+        patternOutput.classList.add('active');
+        patternOutput.style.display = 'block';
+        
+        // Scroll to output
+        setTimeout(() => {
+            patternOutput.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+        
+    } catch (error) {
+        alert('Oops! Something went wrong. Please try again! 😊');
+        console.error('Pattern generation error:', error);
+    } finally {
+        // Reset button state
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+        generateBtn.disabled = false;
+    }
+}
+
+// Mock pattern generator (replace with actual API call)
+async function generateCrochetPattern(request) {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    // For now, return a mock pattern
+    // TODO: Replace with actual OpenAI API call
+    return {
+        title: `Custom Pattern: ${capitalize(request)}`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted weight yarn (main color) - 100g</li>
+                <li>4.0mm (G/6) crochet hook</li>
+                <li>Yarn needle for weaving ends</li>
+                <li>Scissors</li>
+                <li>Stitch markers</li>
+                <li>Polyester fiberfill (if needed for stuffing)</li>
+            </ul>
+            
+            <h3>Pattern Details</h3>
+            <p><strong>Skill Level:</strong> Beginner to Intermediate</p>
+            <p><strong>Finished Size:</strong> Approximately 6-8 inches</p>
+            <p><strong>Gauge:</strong> 16 stitches x 18 rows = 4 inches in single crochet</p>
+            
+            <h3>Abbreviations</h3>
+            <ul>
+                <li><strong>ch</strong> - chain</li>
+                <li><strong>sc</strong> - single crochet</li>
+                <li><strong>inc</strong> - increase (2 sc in one stitch)</li>
+                <li><strong>dec</strong> - decrease (sc two stitches together)</li>
+                <li><strong>st(s)</strong> - stitch(es)</li>
+                <li><strong>rnd</strong> - round</li>
+            </ul>
+            
+            <h3>Instructions</h3>
+            <h4>Starting</h4>
+            <ol>
+                <li><strong>Rnd 1:</strong> Magic ring, 6 sc in ring [6]</li>
+                <li><strong>Rnd 2:</strong> Inc in each st around [12]</li>
+                <li><strong>Rnd 3:</strong> (Sc, inc) x 6 [18]</li>
+                <li><strong>Rnd 4:</strong> (2 sc, inc) x 6 [24]</li>
+                <li><strong>Rnd 5:</strong> (3 sc, inc) x 6 [30]</li>
+            </ol>
+            
+            <h4>Main Body</h4>
+            <ol start="6">
+                <li><strong>Rnd 6-10:</strong> Sc in each st around [30] (5 rounds)</li>
+                <li><strong>Rnd 11:</strong> (3 sc, dec) x 6 [24]</li>
+                <li><strong>Rnd 12:</strong> (2 sc, dec) x 6 [18]</li>
+                <li>Stuff firmly with fiberfill</li>
+                <li><strong>Rnd 13:</strong> (Sc, dec) x 6 [12]</li>
+                <li><strong>Rnd 14:</strong> Dec around [6]</li>
+                <li>Fasten off, weave in ends</li>
+            </ol>
+            
+            <h3>Finishing Touches</h3>
+            <p>Add any embellishments, eyes, or details as desired. Weave in all loose ends securely.</p>
+            
+            <h3>Tips for Success</h3>
+            <ul>
+                <li>✨ Keep your tension consistent throughout</li>
+                <li>✨ Use stitch markers to track your rounds</li>
+                <li>✨ Don't overstuff - it should be firm but not bulging</li>
+                <li>✨ Count your stitches at the end of each round</li>
+            </ul>
+            
+            <p><em>Note: This is an AI-generated pattern. Please test and adjust as needed for your specific project!</em></p>
+        `
+    };
+}
+
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Generate another pattern
+if (generateAnotherBtn) {
+    generateAnotherBtn.addEventListener('click', () => {
+        patternOutput.classList.remove('active');
+        patternOutput.style.display = 'none';
+        patternInput.value = '';
+        patternInput.focus();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// Copy pattern to clipboard
+if (copyPatternBtn) {
+    copyPatternBtn.addEventListener('click', async () => {
+        const patternText = patternContent.innerText;
+        try {
+            await navigator.clipboard.writeText(patternText);
+            copyPatternBtn.textContent = '✅ Copied!';
+            setTimeout(() => {
+                copyPatternBtn.textContent = '📋 Copy to Clipboard';
+            }, 2000);
+        } catch (err) {
+            alert('Could not copy pattern. Please select and copy manually.');
+        }
+    });
+}
+
+// Save pattern as PDF (basic implementation)
+if (savePatternBtn) {
+    savePatternBtn.addEventListener('click', () => {
+        window.print();
+    });
+}
+
 // Console welcome message
 console.log('%cWelcome to CrochetBuddy! 🧶', 'color: #e91e63; font-size: 24px; font-weight: bold;');
-console.log('%cBuilt with love for the crochet community', 'color: #764ba2; font-size: 14px;');
+console.log('%cYour AI-powered crochet pattern generator', 'color: #764ba2; font-size: 14px;');
