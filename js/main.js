@@ -967,6 +967,38 @@ if (savePatternBtn) {
     });
 }
 
+// Popular links functionality
+const popularLinks = document.querySelectorAll('.popular-link');
+popularLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        const patternRequest = link.getAttribute('data-pattern');
+        if (patternRequest) {
+            e.preventDefault();
+            patternInput.value = patternRequest;
+            // Scroll to top and generate
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => {
+                generatePattern();
+            }, 500);
+        }
+    });
+});
+
+// Make logo clickable to go home
+const logo = document.querySelector('.logo');
+if (logo) {
+    logo.style.cursor = 'pointer';
+    logo.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Remove active class from all nav links
+        navLinks.forEach(link => link.classList.remove('active'));
+        // Add active to home
+        const homeLink = document.querySelector('.nav-list a[href="#home"]');
+        if (homeLink) homeLink.classList.add('active');
+    });
+}
+
 // Console welcome message
 console.log('%cWelcome to CrochetBuddy! 🧶', 'color: #e91e63; font-size: 24px; font-weight: bold;');
 console.log('%cYour AI-powered crochet pattern generator', 'color: #764ba2; font-size: 14px;');
+console.log('%c40+ Free Patterns Available!', 'color: #4caf50; font-size: 16px; font-weight: bold;');
