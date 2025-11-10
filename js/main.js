@@ -221,15 +221,18 @@ async function generateCrochetPattern(request) {
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     // Detect what type of item is being requested
+    const isPoncho = /poncho/i.test(request);
     const isAmigurumi = /monkey|bunny|bear|cat|dog|animal|creature|character|octopus|elephant|frog|turtle|bird|fox|lion|tiger|giraffe|penguin|owl|unicorn|dragon|dinosaur|mouse|rat|hamster|pig|cow|sheep|horse|zebra|koala|panda|sloth|raccoon|squirrel|bee|butterfly|ladybug|spider|fish|whale|dolphin|shark|snake|cactus|mushroom|flower|fruit|strawberry|avocado|lemon|apple|watermelon|pumpkin|ghost|monster|alien|robot/i.test(request);
     const isBlanket = /blanket|afghan|throw|bedspread|coverlet/i.test(request);
-    const isClothing = /cardigan|sweater|scarf|hat|beanie|beret|shawl|poncho|vest|jacket|coat|mittens|gloves|socks|slippers|bolero|cape|cowl|headband|ear warmer|wrist warmer|leg warmer/i.test(request);
+    const isClothing = /cardigan|sweater|scarf|hat|beanie|beret|shawl|vest|jacket|coat|mittens|gloves|socks|slippers|bolero|cape|cowl|headband|ear warmer|wrist warmer|leg warmer/i.test(request);
     const isBaby = /baby|infant|newborn|bib|bootie|bonnet|onesie|diaper cover|mobile|teether|rattle/i.test(request);
     const isAccessory = /bag|purse|tote|backpack|pouch|wallet|clutch|market bag|basket|coaster|placemat|potholder|dishcloth|washcloth|scrubby/i.test(request);
     const isHomeDecor = /pillow|cushion|rug|mat|wall hanging|garland|bunting|wreath|doily|table runner|tablecloth/i.test(request);
     const isToy = /toy|ball|blocks|teether|sensory/i.test(request) && !isAmigurumi;
     
-    if (isAmigurumi) {
+    if (isPoncho) {
+        return generatePonchoPattern(request);
+    } else if (isAmigurumi) {
         return generateAmigurumiPattern(request);
     } else if (isBlanket) {
         return generateBlanketPattern(request);
@@ -406,6 +409,197 @@ function generateAmigurumiPattern(request) {
                 <li>🌟 Add stripes or color changes to limbs</li>
                 <li>💝 Make it bigger or smaller by changing hook size</li>
             </ul>
+        `
+    };
+}
+
+function generatePonchoPattern(request) {
+    const hasHood = /hood/i.test(request);
+    return {
+        title: `${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Bulky weight yarn (5) - approximately 1200-1500 yards</li>
+                <li>6.5mm (K/10.5) crochet hook</li>
+                <li>Yarn needle for sewing seams</li>
+                <li>Stitch markers</li>
+                <li>Measuring tape</li>
+                <li>Scissors</li>
+            </ul>
+            
+            <h3>Sizing</h3>
+            <p><strong>One Size Fits Most</strong> - Oversized fit for S/M/L</p>
+            <p><strong>Finished Measurements:</strong></p>
+            <ul>
+                <li>Length: 28 inches from shoulder to hem</li>
+                <li>Width: 60 inches across (30 inches each side from center)</li>
+                ${hasHood ? '<li>Hood depth: 12 inches</li>' : ''}
+            </ul>
+            
+            <h3>Gauge</h3>
+            <p>12 stitches x 14 rows = 4 inches in single crochet</p>
+            <p><em>Gauge is important for proper fit!</em></p>
+            
+            <h3>Abbreviations</h3>
+            <ul>
+                <li><strong>ch</strong> - chain</li>
+                <li><strong>sc</strong> - single crochet</li>
+                <li><strong>hdc</strong> - half double crochet</li>
+                <li><strong>dc</strong> - double crochet</li>
+                <li><strong>inc</strong> - increase (2 stitches in one)</li>
+                <li><strong>dec</strong> - decrease</li>
+                <li><strong>st(s)</strong> - stitch(es)</li>
+                <li><strong>sl st</strong> - slip stitch</li>
+            </ul>
+            
+            <h3>Main Body (Front and Back Combined)</h3>
+            <p><strong>Construction:</strong> This poncho is worked from the top down in one piece</p>
+            
+            <h4>Neck Opening</h4>
+            <ol>
+                <li><strong>Foundation:</strong> Ch 60 (or chain to measure 20 inches)</li>
+                <li>Join with sl st to first ch to form ring, being careful not to twist</li>
+                <li>Mark beginning of round</li>
+            </ol>
+            
+            <h4>Body Expansion Rounds</h4>
+            <ol>
+                <li><strong>Rnd 1:</strong> Ch 2 (counts as first hdc), hdc in each ch around, join with sl st to top of ch-2 [60 hdc]</li>
+                <li><strong>Rnd 2:</strong> Ch 2, hdc in same st, hdc in next 29 sts, 2 hdc in next st (corner), hdc in next 29 sts, 2 hdc in last st (corner), join [62 hdc]</li>
+                <li><strong>Rnd 3:</strong> Ch 2, hdc in each st around, join [62 hdc]</li>
+                <li><strong>Rnd 4:</strong> Ch 2, hdc in next 30 sts, 2 hdc in next st, hdc in next 30 sts, 2 hdc in next st, join [64 hdc]</li>
+                <li><strong>Rnds 5-20:</strong> Continue in this manner, increasing 2 sts every other round at front and back "corners" until you have approximately 90 sts</li>
+            </ol>
+            
+            <h4>Straight Body Section</h4>
+            <ol start="21">
+                <li><strong>Rnds 21-50:</strong> Ch 2, hdc in each st around, join [90 hdc per round]</li>
+                <li>Continue working even (no increases) until poncho measures 28 inches from neck or desired length</li>
+            </ol>
+            
+            <h4>Bottom Border</h4>
+            <ol>
+                <li><strong>Rnd 1:</strong> Ch 1, sc in each st around, join [90 sc]</li>
+                <li><strong>Rnd 2:</strong> Ch 1, sc in each st around, join [90 sc]</li>
+                <li><strong>Rnd 3:</strong> Ch 1, *sc in next 8 sts, 2 sc in next st*, repeat around, join [100 sc]</li>
+                <li>Fasten off and weave in ends</li>
+            </ol>
+            
+            ${hasHood ? `
+            <h3>Hood Construction</h3>
+            <p><strong>The hood is worked separately and sewn on</strong></p>
+            
+            <h4>Hood Base</h4>
+            <ol>
+                <li><strong>Foundation:</strong> Ch 37</li>
+                <li><strong>Row 1:</strong> Hdc in 3rd ch from hook (skipped chs count as first hdc), hdc in each ch across, turn [36 hdc]</li>
+                <li><strong>Row 2:</strong> Ch 2, hdc in each st across, turn [36 hdc]</li>
+                <li><strong>Rows 3-35:</strong> Repeat Row 2 [36 hdc per row]</li>
+                <li>Continue until hood piece measures approximately 12 inches from beginning</li>
+                <li>Do not fasten off</li>
+            </ol>
+            
+            <h4>Hood Seam</h4>
+            <ol>
+                <li>Fold hood piece in half lengthwise with right sides together</li>
+                <li>Working through both layers, sl st or sc across top edge to seam hood closed</li>
+                <li>Turn hood right side out</li>
+            </ol>
+            
+            <h4>Hood Edging</h4>
+            <ol>
+                <li><strong>Rnd 1:</strong> With hood right side out, join yarn at center back bottom edge</li>
+                <li>Work sc evenly all the way around hood opening (approximately 60-70 sc)</li>
+                <li><strong>Rnd 2:</strong> Ch 1, sc in each st around, join</li>
+                <li>Fasten off, leaving long tail for sewing</li>
+            </ol>
+            
+            <h4>Attaching Hood to Poncho</h4>
+            <ol>
+                <li>Turn poncho inside out</li>
+                <li>Pin hood to neck opening, matching center back of hood to center back of poncho</li>
+                <li>Distribute hood evenly around neck opening</li>
+                <li>Using yarn needle and matching yarn, whip stitch hood to neck opening all the way around</li>
+                <li>Reinforce seam by stitching over it a second time</li>
+                <li>Turn poncho right side out and check hood for proper fit</li>
+            </ol>
+            
+            <h3>Hood Shaping Tips</h3>
+            <ul>
+                <li>✨ Make sure hood seam is at center back top for proper draping</li>
+                <li>✨ Hood should sit comfortably without pulling or gaping</li>
+                <li>✨ Try on as you attach to check fit before finishing seam</li>
+                <li>✨ Add drawstring with chain stitch if desired</li>
+            </ul>
+            ` : ''}
+            
+            <h3>Optional: Front Pockets (Make 2)</h3>
+            <ol>
+                <li><strong>Foundation:</strong> Ch 21</li>
+                <li><strong>Row 1:</strong> Sc in 2nd ch from hook and across, turn [20 sc]</li>
+                <li><strong>Rows 2-15:</strong> Ch 1, sc in each st across, turn [20 sc]</li>
+                <li>Fasten off, leaving long tail for sewing</li>
+                <li>Position pockets on front of poncho about 8 inches down from neck and 6 inches in from each side edge</li>
+                <li>Pin in place and sew around bottom and side edges, leaving top open</li>
+            </ol>
+            
+            <h3>Finishing</h3>
+            <ul>
+                <li>Weave in all loose ends securely</li>
+                <li>Steam block gently if needed (avoid direct heat on synthetic yarns)</li>
+                <li>Try on and make any final adjustments</li>
+            </ul>
+            
+            <h3>Styling Variations</h3>
+            <ul>
+                <li>🎨 <strong>Striped:</strong> Change colors every 4-6 rounds for bold stripes</li>
+                <li>🌈 <strong>Ombre:</strong> Gradually shift from light to dark shades</li>
+                <li>✨ <strong>Textured:</strong> Alternate rounds of hdc and dc for dimension</li>
+                <li>🎀 <strong>Belted:</strong> Add belt loops and wear with a statement belt</li>
+                <li>🧶 <strong>Fringed:</strong> Add long fringe around bottom hem</li>
+            </ul>
+            
+            <h3>Fit Adjustments</h3>
+            <ul>
+                <li><strong>Shorter Length:</strong> Work fewer rounds in straight body section</li>
+                <li><strong>Longer Length:</strong> Continue straight section to desired length</li>
+                <li><strong>Larger Neck:</strong> Start with 70-80 chain instead of 60</li>
+                <li><strong>Smaller Neck:</strong> Start with 50 chain</li>
+                ${hasHood ? '<li><strong>Deeper Hood:</strong> Work 40-45 rows instead of 35</li>' : ''}
+                ${hasHood ? '<li><strong>Cozier Hood:</strong> Add drawstring through round 2 of hood edge</li>' : ''}
+            </ul>
+            
+            <h3>Care Instructions</h3>
+            <ul>
+                <li>🧼 Hand wash in cool water with mild detergent</li>
+                <li>💧 Gently squeeze out excess water (do not wring)</li>
+                <li>🌡️ Lay flat on towel to dry, reshaping as needed</li>
+                <li>🔄 Store folded or hanging to maintain shape</li>
+            </ul>
+            
+            <h3>Troubleshooting</h3>
+            <ul>
+                <li>📐 <strong>Poncho too snug:</strong> Increase starting chain or use larger hook</li>
+                <li>🔄 <strong>Poncho too loose:</strong> Decrease starting chain or use smaller hook</li>
+                <li>⚖️ <strong>Uneven hem:</strong> Block thoroughly and adjust final round</li>
+                ${hasHood ? '<li>🎩 <strong>Hood too tight:</strong> Start hood with 40 chains instead of 37</li>' : ''}
+                ${hasHood ? '<li>🎪 <strong>Hood too loose:</strong> Start with 34 chains and work to 10 inches</li>' : ''}
+                ${hasHood ? '<li>🧵 <strong>Hood pulling:</strong> Check that it\'s centered and evenly distributed around neck</li>' : ''}
+            </ul>
+            
+            <h3>Pro Tips</h3>
+            <ul>
+                <li>✨ Use stitch markers every 15-20 stitches to help count rows</li>
+                <li>✨ Try on frequently as you work to check length and fit</li>
+                <li>✨ Consider using a lighter weight yarn with smaller hook for a drapier poncho</li>
+                <li>✨ A contrasting color for the border adds visual interest</li>
+                ${hasHood ? '<li>✨ Make hood first to ensure you have enough yarn</li>' : ''}
+                ${hasHood ? '<li>✨ Add a button or toggle to hood for closure at neck</li>' : ''}
+                <li>✨ This pattern works great for color pooling yarns!</li>
+            </ul>
+            
+            <p><strong>Enjoy your cozy new poncho! 🧶✨</strong></p>
         `
     };
 }
