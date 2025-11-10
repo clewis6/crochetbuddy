@@ -223,9 +223,13 @@ async function generateCrochetPattern(request) {
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     // Detect what type of item is being requested
-    const isAmigurumi = /monkey|bunny|bear|cat|dog|animal|creature|character|octopus|elephant|frog|turtle/i.test(request);
-    const isBlanket = /blanket|afghan|throw/i.test(request);
-    const isClothing = /cardigan|sweater|scarf|hat|shawl|poncho/i.test(request);
+    const isAmigurumi = /monkey|bunny|bear|cat|dog|animal|creature|character|octopus|elephant|frog|turtle|bird|fox|lion|tiger|giraffe|penguin|owl|unicorn|dragon|dinosaur|mouse|rat|hamster|pig|cow|sheep|horse|zebra|koala|panda|sloth|raccoon|squirrel|bee|butterfly|ladybug|spider|fish|whale|dolphin|shark|snake|cactus|mushroom|flower|fruit|strawberry|avocado|lemon|apple|watermelon|pumpkin|ghost|monster|alien|robot/i.test(request);
+    const isBlanket = /blanket|afghan|throw|bedspread|coverlet/i.test(request);
+    const isClothing = /cardigan|sweater|scarf|hat|beanie|beret|shawl|poncho|vest|jacket|coat|mittens|gloves|socks|slippers|bolero|cape|cowl|headband|ear warmer|wrist warmer|leg warmer/i.test(request);
+    const isBaby = /baby|infant|newborn|bib|bootie|bonnet|onesie|diaper cover|mobile|teether|rattle/i.test(request);
+    const isAccessory = /bag|purse|tote|backpack|pouch|wallet|clutch|market bag|basket|coaster|placemat|potholder|dishcloth|washcloth|scrubby/i.test(request);
+    const isHomeDecor = /pillow|cushion|rug|mat|wall hanging|garland|bunting|wreath|doily|table runner|tablecloth/i.test(request);
+    const isToy = /toy|ball|blocks|teether|sensory/i.test(request) && !isAmigurumi;
     
     if (isAmigurumi) {
         return generateAmigurumiPattern(request);
@@ -233,8 +237,17 @@ async function generateCrochetPattern(request) {
         return generateBlanketPattern(request);
     } else if (isClothing) {
         return generateClothingPattern(request);
+    } else if (isBaby) {
+        return generateBabyPattern(request);
+    } else if (isAccessory) {
+        return generateAccessoryPattern(request);
+    } else if (isHomeDecor) {
+        return generateHomeDecorPattern(request);
+    } else if (isToy) {
+        return generateToyPattern(request);
     } else {
-        return generateGenericPattern(request);
+        // For anything else, create a comprehensive pattern
+        return generateUniversalPattern(request);
     }
 }
 
@@ -507,30 +520,400 @@ function generateClothingPattern(request) {
     };
 }
 
-function generateGenericPattern(request) {
+function generateBabyPattern(request) {
     return {
         title: `${capitalize(request)} Pattern`,
         content: `
             <h3>Materials Needed</h3>
             <ul>
-                <li>Appropriate yarn weight for project</li>
-                <li>Matching crochet hook</li>
+                <li>Baby-safe soft yarn (acrylic or cotton) - 200-300 yards</li>
+                <li>4.0-5.0mm crochet hook</li>
                 <li>Yarn needle</li>
-                <li>Scissors</li>
-                <li>Additional notions as needed</li>
+                <li>Stitch markers</li>
+                <li>Safety closures (no small parts for babies!)</li>
             </ul>
             
-            <h3>Pattern Instructions</h3>
-            <p>Complete pattern instructions will be generated when connected to AI.</p>
-            <p>This is a placeholder pattern. See API_SETUP.md to connect real AI pattern generation.</p>
+            <h3>Pattern Details</h3>
+            <p><strong>Size:</strong> Newborn to 12 months (adjustable)</p>
+            <p><strong>Skill Level:</strong> Easy to Intermediate</p>
+            <p><strong>Special Notes:</strong> Use baby-safe materials only. Avoid buttons, beads, or small embellishments.</p>
             
-            <h3>General Tips</h3>
+            <h3>Main Piece Instructions</h3>
+            <ol>
+                <li><strong>Foundation:</strong> Ch 20 (adjust for size)</li>
+                <li><strong>Row 1:</strong> Sc in 2nd ch from hook and across, turn [19]</li>
+                <li><strong>Row 2-30:</strong> Ch 1, sc in each st across, turn</li>
+                <li>Continue until piece measures desired length</li>
+                <li>Fasten off</li>
+            </ol>
+            
+            <h3>Border (Optional)</h3>
+            <ol>
+                <li><strong>Rnd 1:</strong> Work sc evenly around all edges</li>
+                <li><strong>Rnd 2:</strong> Ch 1, sc in each st around</li>
+                <li>Sl st to first sc, fasten off</li>
+            </ol>
+            
+            <h3>Assembly</h3>
             <ul>
-                <li>✨ Always check your gauge</li>
-                <li>✨ Read through entire pattern before starting</li>
-                <li>✨ Keep tension consistent</li>
-                <li>✨ Count your stitches regularly</li>
+                <li>Weave in all ends securely</li>
+                <li>Add any safe embellishments (embroidered details only)</li>
+                <li>Wash and block if needed</li>
             </ul>
+            
+            <h3>Care Instructions</h3>
+            <ul>
+                <li>🧼 Machine wash gentle, cold water</li>
+                <li>🌡️ Lay flat to dry</li>
+                <li>✋ Inspect regularly for loose threads</li>
+            </ul>
+            
+            <h3>Safety Tips</h3>
+            <ul>
+                <li>⚠️ Never use buttons, beads, or removable parts</li>
+                <li>⚠️ Embroider faces instead of using safety eyes</li>
+                <li>⚠️ Make sure all ends are woven in very securely</li>
+                <li>⚠️ Test item before giving to baby</li>
+            </ul>
+        `
+    };
+}
+
+function generateAccessoryPattern(request) {
+    return {
+        title: `${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted weight yarn - 200-400 yards (depending on size)</li>
+                <li>5.0mm (H/8) crochet hook</li>
+                <li>Yarn needle for weaving ends</li>
+                <li>Stitch markers</li>
+                <li>Lining fabric (optional, for bags)</li>
+                <li>Zipper, snap, or button closure (if applicable)</li>
+            </ul>
+            
+            <h3>Pattern Details</h3>
+            <p><strong>Finished Size:</strong> Approximately 10" x 12" (adjust as desired)</p>
+            <p><strong>Gauge:</strong> 16 stitches x 18 rows = 4 inches in sc</p>
+            <p><strong>Skill Level:</strong> Intermediate</p>
+            
+            <h3>Main Body</h3>
+            <ol>
+                <li><strong>Foundation:</strong> Ch 41</li>
+                <li><strong>Row 1:</strong> Sc in 2nd ch from hook and across, turn [40]</li>
+                <li><strong>Row 2-40:</strong> Ch 1, sc in each st across, turn [40]</li>
+                <li>Continue working in sc until piece reaches desired size</li>
+            </ol>
+            
+            <h3>Handles/Straps (Make 2)</h3>
+            <ol>
+                <li>Ch 61 (or desired length)</li>
+                <li><strong>Row 1:</strong> Sc in 2nd ch from hook and across [60]</li>
+                <li><strong>Row 2-4:</strong> Ch 1, sc in each st across, turn [60]</li>
+                <li>Fasten off, leaving long tail for sewing</li>
+            </ol>
+            
+            <h3>Assembly</h3>
+            <ol>
+                <li>Fold main body in half (if making a bag/pouch)</li>
+                <li>Sew side seams using whip stitch or sl st</li>
+                <li>Attach handles/straps securely to top edges</li>
+                <li>Add closure mechanism if desired</li>
+                <li>Optional: Add lining for structure and durability</li>
+            </ol>
+            
+            <h3>Finishing Touches</h3>
+            <ul>
+                <li>Weave in all ends</li>
+                <li>Steam block for crisp edges</li>
+                <li>Add decorative elements (buttons, appliques, etc.)</li>
+            </ul>
+            
+            <h3>Customization Ideas</h3>
+            <ul>
+                <li>🎨 Add stripes or color blocking</li>
+                <li>✨ Use textured stitches (bobbles, popcorn, shells)</li>
+                <li>🌸 Add crochet flowers or appliques</li>
+                <li>💫 Try different yarn weights for varied looks</li>
+            </ul>
+        `
+    };
+}
+
+function generateHomeDecorPattern(request) {
+    return {
+        title: `${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted or bulky weight yarn - 300-600 yards</li>
+                <li>5.5-6.0mm crochet hook</li>
+                <li>Yarn needle for weaving ends</li>
+                <li>Stitch markers</li>
+                <li>Pillow form or stuffing (if applicable)</li>
+            </ul>
+            
+            <h3>Pattern Details</h3>
+            <p><strong>Finished Size:</strong> 16" x 16" (or customize to your needs)</p>
+            <p><strong>Gauge:</strong> 14 stitches x 16 rows = 4 inches</p>
+            <p><strong>Skill Level:</strong> Easy to Intermediate</p>
+            
+            <h3>Front Panel</h3>
+            <ol>
+                <li><strong>Foundation:</strong> Ch 57</li>
+                <li><strong>Row 1:</strong> Sc in 2nd ch from hook and across, turn [56]</li>
+                <li><strong>Row 2:</strong> Ch 1, sc in each st across, turn [56]</li>
+                <li><strong>Repeat Row 2</strong> until piece measures 16" (or desired size)</li>
+                <li>Fasten off</li>
+            </ol>
+            
+            <h3>Back Panel</h3>
+            <p>Work same as front panel</p>
+            
+            <h3>Assembly</h3>
+            <ol>
+                <li>Place front and back panels together, wrong sides facing</li>
+                <li>Work sc around three sides, joining panels together</li>
+                <li>Insert pillow form or stuffing</li>
+                <li>Continue sc across fourth side to close</li>
+                <li>Sl st to first sc, fasten off</li>
+            </ol>
+            
+            <h3>Decorative Border (Optional)</h3>
+            <ol>
+                <li><strong>Rnd 1:</strong> Join yarn in any corner, work sc evenly around</li>
+                <li><strong>Rnd 2:</strong> *Ch 3, skip 1 st, sc in next st; repeat from * around</li>
+                <li>Or use shell stitch: *(5 dc) in same st, skip 2 sts, sc in next st*</li>
+                <li>Fasten off and weave in ends</li>
+            </ol>
+            
+            <h3>Pattern Variations</h3>
+            <ul>
+                <li>🌟 Use granny squares for a classic look</li>
+                <li>🌊 Create ripple or chevron patterns</li>
+                <li>🎯 Work in the round for circular designs</li>
+                <li>🧩 Mix different stitch patterns for texture</li>
+            </ul>
+            
+            <h3>Care Instructions</h3>
+            <ul>
+                <li>Spot clean or hand wash</li>
+                <li>Lay flat to dry</li>
+                <li>Steam block if needed</li>
+            </ul>
+        `
+    };
+}
+
+function generateToyPattern(request) {
+    return {
+        title: `${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted weight yarn in various colors - 100-200g total</li>
+                <li>4.0mm (G/6) crochet hook</li>
+                <li>Polyester fiberfill stuffing</li>
+                <li>Yarn needle</li>
+                <li>Stitch markers</li>
+                <li>Safety eyes or embroidery floss (for faces)</li>
+            </ul>
+            
+            <h3>Safety First!</h3>
+            <p><strong>⚠️ Important:</strong> For children under 3, embroider all features. No small parts!</p>
+            
+            <h3>Main Body/Ball</h3>
+            <ol>
+                <li><strong>Rnd 1:</strong> Magic ring, 6 sc in ring [6]</li>
+                <li><strong>Rnd 2:</strong> Inc in each st around [12]</li>
+                <li><strong>Rnd 3:</strong> (Sc, inc) x 6 [18]</li>
+                <li><strong>Rnd 4:</strong> (2 sc, inc) x 6 [24]</li>
+                <li><strong>Rnd 5:</strong> (3 sc, inc) x 6 [30]</li>
+                <li><strong>Rnd 6:</strong> (4 sc, inc) x 6 [36]</li>
+                <li><strong>Rnd 7-12:</strong> Sc in each st around [36] (6 rounds)</li>
+                <li><strong>Rnd 13:</strong> (4 sc, dec) x 6 [30]</li>
+                <li><strong>Rnd 14:</strong> (3 sc, dec) x 6 [24]</li>
+                <li>Stuff firmly</li>
+                <li><strong>Rnd 15:</strong> (2 sc, dec) x 6 [18]</li>
+                <li><strong>Rnd 16:</strong> (Sc, dec) x 6 [12]</li>
+                <li><strong>Rnd 17:</strong> Dec around [6]</li>
+                <li>Fasten off, close opening</li>
+            </ol>
+            
+            <h3>Embellishments</h3>
+            <ul>
+                <li>Add stripes in different colors</li>
+                <li>Embroider patterns or designs</li>
+                <li>Attach crochet shapes (stars, flowers, etc.)</li>
+                <li>Add texture with different stitches</li>
+            </ul>
+            
+            <h3>Additional Pieces (if needed)</h3>
+            <p>Create additional components like handles, tags, or attachments as desired</p>
+            
+            <h3>Safety Tips</h3>
+            <ul>
+                <li>✅ Use tight tension so stuffing doesn't come out</li>
+                <li>✅ Securely weave in all ends</li>
+                <li>✅ Test toy before giving to child</li>
+                <li>✅ Wash in gentle cycle, air dry</li>
+            </ul>
+        `
+    };
+}
+
+function generateUniversalPattern(request) {
+    // This creates a comprehensive pattern for anything!
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Appropriate weight yarn for your project - 200-500 yards (adjust based on size)</li>
+                <li>Recommended crochet hook: 4.0-5.5mm (size depends on yarn and desired fabric)</li>
+                <li>Yarn needle for weaving ends and seaming</li>
+                <li>Stitch markers to track your progress</li>
+                <li>Scissors</li>
+                <li>Stuffing, lining, or other notions as needed for your specific item</li>
+            </ul>
+            
+            <h3>Pattern Details</h3>
+            <p><strong>Skill Level:</strong> Intermediate</p>
+            <p><strong>Gauge:</strong> 16 stitches x 18 rows = 4 inches in single crochet (adjust as needed)</p>
+            <p><strong>Note:</strong> This is a flexible pattern - adjust measurements and techniques for your specific project.</p>
+            
+            <h3>Abbreviations Used</h3>
+            <ul>
+                <li><strong>ch</strong> - chain</li>
+                <li><strong>sc</strong> - single crochet</li>
+                <li><strong>hdc</strong> - half double crochet</li>
+                <li><strong>dc</strong> - double crochet</li>
+                <li><strong>inc</strong> - increase (2 stitches in one)</li>
+                <li><strong>dec</strong> - decrease (combine 2 stitches into 1)</li>
+                <li><strong>sl st</strong> - slip stitch</li>
+                <li><strong>st(s)</strong> - stitch(es)</li>
+                <li><strong>rnd</strong> - round</li>
+            </ul>
+            
+            <h3>Part 1: Main Body/Foundation</h3>
+            <h4>Option A: Working Flat (Rows)</h4>
+            <ol>
+                <li><strong>Foundation Row:</strong> Ch 41 (or desired width in multiples of pattern stitch)</li>
+                <li><strong>Row 1:</strong> Sc in 2nd ch from hook and in each ch across, turn [40]</li>
+                <li><strong>Row 2:</strong> Ch 1, sc in each st across, turn [40]</li>
+                <li><strong>Rows 3-30:</strong> Repeat Row 2 until piece reaches desired length</li>
+                <li>Fasten off, leaving long tail if seaming is needed</li>
+            </ol>
+            
+            <h4>Option B: Working in the Round</h4>
+            <ol>
+                <li><strong>Rnd 1:</strong> Magic ring, 6 sc in ring [6]</li>
+                <li><strong>Rnd 2:</strong> Inc in each st around [12]</li>
+                <li><strong>Rnd 3:</strong> (Sc, inc) around [18]</li>
+                <li><strong>Rnd 4:</strong> (2 sc, inc) around [24]</li>
+                <li><strong>Rnd 5:</strong> (3 sc, inc) around [30]</li>
+                <li>Continue increasing or work even rounds as needed for your shape</li>
+                <li>For cylinders: Work even (no increases) for desired height</li>
+                <li>For spheres: Work decreases mirror to increases</li>
+            </ol>
+            
+            <h3>Part 2: Additional Components</h3>
+            <p>If your project needs handles, straps, borders, or decorative elements:</p>
+            
+            <h4>Handles/Straps (Make as needed)</h4>
+            <ol>
+                <li>Ch desired length (test by measuring)</li>
+                <li><strong>Row 1:</strong> Sc in 2nd ch from hook and across</li>
+                <li><strong>Rows 2-4:</strong> Ch 1, sc in each st across, turn (for wider straps)</li>
+                <li>Fasten off, leaving tail for attaching</li>
+            </ol>
+            
+            <h4>Decorative Border</h4>
+            <ol>
+                <li>Join yarn to any edge</li>
+                <li><strong>Rnd 1:</strong> Sc evenly around entire piece, working 3 sc in corners</li>
+                <li><strong>Rnd 2:</strong> *Ch 2, skip 1 st, sc in next st* around (creates holes/spaces)</li>
+                <li>Or try shell stitch: *5 dc in same st, skip 2, sc in next* around</li>
+                <li>Fasten off</li>
+            </ol>
+            
+            <h3>Part 3: Assembly</h3>
+            <ol>
+                <li><strong>Block pieces:</strong> Pin to measurements, spray with water, let dry</li>
+                <li><strong>Seam pieces together:</strong> Use whip stitch or mattress stitch for invisible seams</li>
+                <li><strong>Attach components:</strong> Sew on handles, straps, or decorative elements securely</li>
+                <li><strong>Add stuffing/structure:</strong> If needed, stuff firmly but not overly tight</li>
+                <li><strong>Finish edges:</strong> Work final border or edging if desired</li>
+                <li><strong>Weave in ends:</strong> Secure all yarn tails by weaving through multiple stitches</li>
+            </ol>
+            
+            <h3>Customization Options</h3>
+            <ul>
+                <li>🎨 <strong>Color Changes:</strong> Switch colors every few rows for stripes</li>
+                <li>🌟 <strong>Stitch Patterns:</strong> Try alternating sc, hdc, dc for texture</li>
+                <li>📐 <strong>Size Adjustment:</strong> Add/remove foundation chains in multiples of repeat</li>
+                <li>✨ <strong>Embellishments:</strong> Add buttons, beads, embroidery, appliques</li>
+                <li>🧩 <strong>Shape Variation:</strong> Increase/decrease more or less frequently to change shape</li>
+            </ul>
+            
+            <h3>Advanced Techniques</h3>
+            <h4>Texture Stitches</h4>
+            <ul>
+                <li><strong>Bobble Stitch:</strong> (Yarn over, insert hook, pull up loop, yo pull through 2) x 5 in same st, yo pull through all loops</li>
+                <li><strong>Popcorn:</strong> 5 dc in same st, remove hook, insert in first dc, pick up dropped loop, pull through</li>
+                <li><strong>Puff Stitch:</strong> (Yo, insert, pull up loop) x 3 in same st, yo pull through all loops</li>
+            </ul>
+            
+            <h4>Shaping Techniques</h4>
+            <ul>
+                <li><strong>Gradual Increases:</strong> Add 6-12 stitches per round for smooth curves</li>
+                <li><strong>Rapid Increases:</strong> Double stitch count for flaring</li>
+                <li><strong>Decreases:</strong> Mirror your increases to create matching shapes</li>
+            </ul>
+            
+            <h3>Finishing & Care</h3>
+            <ul>
+                <li>🧼 <strong>Washing:</strong> Hand wash in cool water with mild detergent, or machine wash gentle if using acrylic</li>
+                <li>💨 <strong>Drying:</strong> Lay flat to dry on towel, reshape while damp</li>
+                <li>🔥 <strong>Blocking:</strong> Pin to final measurements, steam or spray with water, let dry completely</li>
+                <li>✂️ <strong>Maintenance:</strong> Trim any pilling, re-weave any loose ends that appear</li>
+            </ul>
+            
+            <h3>Pro Tips for Success</h3>
+            <ul>
+                <li>✨ Always make a gauge swatch first - it saves headaches later!</li>
+                <li>✨ Count your stitches at the end of each row/round</li>
+                <li>✨ Use stitch markers liberally - they're your friends</li>
+                <li>✨ Keep consistent tension throughout for even fabric</li>
+                <li>✨ Read through the entire pattern before starting</li>
+                <li>✨ Take photos of your progress for reference</li>
+                <li>✨ Don't be afraid to adjust the pattern to fit your needs</li>
+                <li>✨ Join online crochet communities for help and inspiration</li>
+            </ul>
+            
+            <h3>Troubleshooting Common Issues</h3>
+            <ul>
+                <li>📏 <strong>Too small/large?</strong> Try a different hook size or adjust foundation chain</li>
+                <li>🔄 <strong>Edges curling?</strong> Work a border or block more firmly</li>
+                <li>📊 <strong>Uneven stitches?</strong> Check your tension and hook placement</li>
+                <li>🧵 <strong>Running out of yarn?</strong> Join new yarn at the end of a row if possible</li>
+                <li>❓ <strong>Lost your place?</strong> Use row counters or keep a tally on paper</li>
+            </ul>
+            
+            <h3>Take It Further</h3>
+            <p>Once you've mastered this pattern, try:</p>
+            <ul>
+                <li>Making it in different yarn weights for size variation</li>
+                <li>Experimenting with color combinations</li>
+                <li>Adding your own creative flourishes</li>
+                <li>Designing matching accessories or complementary pieces</li>
+                <li>Teaching someone else how to make it!</li>
+            </ul>
+            
+            <p><em><strong>Note:</strong> This is a comprehensive template pattern. For AI-generated custom patterns specific to your exact request, connect to the OpenAI API (see API_SETUP.md). The mock generator provides a solid starting framework that you can adapt to your specific needs!</em></p>
+            
+            <p><strong>Happy Crocheting! 🧶✨</strong></p>
         `
     };
 }
