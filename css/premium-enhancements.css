@@ -474,3 +474,228 @@ button:focus-visible, a:focus-visible {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
 }
+
+/* ============================================
+   DARK MODE STYLES
+   ============================================ */
+
+body.dark-mode {
+    background: #1a1a2e;
+    color: #eee;
+}
+
+body.dark-mode .hero {
+    background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #0f0f1e 100%);
+}
+
+body.dark-mode .hero h1 {
+    color: #fff;
+}
+
+body.dark-mode .hero p {
+    color: #ccc;
+}
+
+body.dark-mode .pattern-category {
+    background: #16213e;
+}
+
+body.dark-mode .pattern-category h2 {
+    color: #fff;
+}
+
+body.dark-mode .pattern-card {
+    background: #0f3460;
+    border-color: #1a4d7a;
+}
+
+body.dark-mode .pattern-card:hover {
+    background: #1a4d7a;
+    transform: translateY(-8px);
+}
+
+body.dark-mode .pattern-card h3 {
+    color: #fff;
+}
+
+body.dark-mode .pattern-card p {
+    color: #bbb;
+}
+
+body.dark-mode .pattern-generator {
+    background: #16213e;
+}
+
+body.dark-mode #pattern-output {
+    background: #16213e;
+    color: #eee;
+}
+
+body.dark-mode #pattern-output h2,
+body.dark-mode #pattern-output h3,
+body.dark-mode #pattern-output h4 {
+    color: #fff;
+}
+
+body.dark-mode code {
+    background: #0f3460;
+    color: #64ffda;
+}
+
+body.dark-mode footer {
+    background: #0f0f1e;
+    color: #999;
+}
+
+body.dark-mode #pattern-search {
+    background: #16213e;
+    color: #fff;
+    border-color: #1a4d7a;
+}
+
+body.dark-mode #pattern-search::placeholder {
+    color: #999;
+}
+
+body.dark-mode .favorites-list {
+    background: #16213e;
+    color: #fff;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+    background: #0f0f1e;
+}
+
+body.dark-mode table {
+    color: #eee;
+}
+
+body.dark-mode table th {
+    background: #0f3460;
+}
+
+body.dark-mode table td {
+    border-color: #1a4d7a;
+}
+
+/* ============================================
+   ANIMATIONS FOR NEW FEATURES
+   ============================================ */
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10%, 30% {
+        transform: scale(1.1);
+    }
+    20%, 40% {
+        transform: scale(1.05);
+    }
+}
+
+.favorite-btn:hover {
+    animation: heartbeat 0.6s ease;
+    transform: scale(1.05);
+}
+
+#dark-mode-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+}
+
+/* Pattern search focus effect */
+#pattern-search:focus {
+    outline: none;
+    border-color: #667eea !important;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3) !important;
+}
+
+/* Favorites dropdown animation */
+.favorites-list {
+    animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Share button hover effect */
+#share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* Smooth transitions for dark mode */
+body,
+.hero,
+.pattern-category,
+.pattern-card,
+.pattern-generator,
+#pattern-output,
+footer,
+#pattern-search {
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Print styles */
+@media print {
+    header,
+    footer,
+    .scroll-to-top,
+    #dark-mode-toggle,
+    .favorite-btn,
+    #share-btn,
+    .btn-primary,
+    .pattern-categories,
+    #pattern-search {
+        display: none !important;
+    }
+    
+    #pattern-output {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    h2, h3, h4 {
+        page-break-after: avoid;
+    }
+    
+    ul, ol {
+        page-break-inside: avoid;
+    }
+}

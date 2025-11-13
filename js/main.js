@@ -2660,3 +2660,520 @@ window.addEventListener('scroll', () => {
         hero.style.transform = `translateY(${scrolled * 0.3}px)`;
     }
 });
+
+// ============================================
+// ADVANCED FEATURES - Making it Even Better!
+// ============================================
+
+// 1. FAVORITES SYSTEM - Save patterns to localStorage
+class PatternFavorites {
+    constructor() {
+        this.storageKey = 'crochetBuddyFavorites';
+        this.favorites = this.load();
+        this.init();
+    }
+    
+    load() {
+        try {
+            const saved = localStorage.getItem(this.storageKey);
+            return saved ? JSON.parse(saved) : [];
+        } catch (e) {
+            return [];
+        }
+    }
+    
+    save() {
+        try {
+            localStorage.setItem(this.storageKey, JSON.stringify(this.favorites));
+        } catch (e) {
+            console.error('Could not save favorites:', e);
+        }
+    }
+    
+    add(patternName) {
+        if (!this.favorites.includes(patternName)) {
+            this.favorites.push(patternName);
+            this.save();
+            this.updateUI();
+            this.showNotification(`❤️ Added "${patternName}" to favorites!`);
+        }
+    }
+    
+    remove(patternName) {
+        this.favorites = this.favorites.filter(f => f !== patternName);
+        this.save();
+        this.updateUI();
+        this.showNotification(`Removed "${patternName}" from favorites`);
+    }
+    
+    toggle(patternName) {
+        if (this.favorites.includes(patternName)) {
+            this.remove(patternName);
+        } else {
+            this.add(patternName);
+        }
+    }
+    
+    isFavorite(patternName) {
+        return this.favorites.includes(patternName);
+    }
+    
+    init() {
+        // Add favorite button to pattern output
+        const patternOutput = document.getElementById('pattern-output');
+        if (patternOutput) {
+            const observer = new MutationObserver(() => {
+                this.addFavoriteButton();
+            });
+            observer.observe(patternOutput, { childList: true, subtree: true });
+        }
+        
+        // Create favorites dropdown
+        this.createFavoritesDropdown();
+    }
+    
+    addFavoriteButton() {
+        const patternTitle = document.querySelector('#pattern-output h2');
+        if (patternTitle && !document.getElementById('favorite-btn')) {
+            const patternName = patternTitle.textContent;
+            const isFav = this.isFavorite(patternName);
+            
+            const favBtn = document.createElement('button');
+            favBtn.id = 'favorite-btn';
+            favBtn.className = 'favorite-btn';
+            favBtn.innerHTML = isFav ? '❤️ Saved' : '🤍 Save';
+            favBtn.style.cssText = `
+                margin-left: 15px;
+                padding: 8px 16px;
+                background: ${isFav ? '#ff6b9d' : '#fff'};
+                color: ${isFav ? '#fff' : '#333'};
+                border: 2px solid #ff6b9d;
+                border-radius: 25px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            `;
+            
+            favBtn.addEventListener('click', () => {
+                this.toggle(patternName);
+                favBtn.innerHTML = this.isFavorite(patternName) ? '❤️ Saved' : '🤍 Save';
+                favBtn.style.background = this.isFavorite(patternName) ? '#ff6b9d' : '#fff';
+                favBtn.style.color = this.isFavorite(patternName) ? '#fff' : '#333';
+            });
+            
+            patternTitle.style.display = 'flex';
+            patternTitle.style.alignItems = 'center';
+            patternTitle.appendChild(favBtn);
+        }
+    }
+    
+    createFavoritesDropdown() {
+        const header = document.querySelector('header .container');
+        if (!header) return;
+        
+        const favoritesDiv = document.createElement('div');
+        favoritesDiv.className = 'favorites-dropdown';
+        favoritesDiv.style.cssText = `
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+        `;
+        
+        const favBtn = document.createElement('button');
+        favBtn.innerHTML = '❤️ My Patterns';
+        favBtn.className = 'btn-favorites';
+        favBtn.style.cssText = `
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+            transition: all 0.3s ease;
+        `;
+        
+        const dropdown = document.createElement('div');
+        dropdown.className = 'favorites-list';
+        dropdown.style.cssText = `
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            min-width: 250px;
+            max-width: 350px;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            padding: 10px;
+        `;
+        
+        favBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+            this.updateUI();
+        });
+        
+        document.addEventListener('click', () => {
+            dropdown.style.display = 'none';
+        });
+        
+        favoritesDiv.appendChild(favBtn);
+        favoritesDiv.appendChild(dropdown);
+        
+        const nav = header.querySelector('nav');
+        if (nav) {
+            nav.appendChild(favoritesDiv);
+        }
+        
+        this.dropdownElement = dropdown;
+        this.updateUI();
+    }
+    
+    updateUI() {
+        if (!this.dropdownElement) return;
+        
+        if (this.favorites.length === 0) {
+            this.dropdownElement.innerHTML = `
+                <div style="padding: 20px; text-align: center; color: #999;">
+                    <p>No saved patterns yet!</p>
+                    <p style="font-size: 12px; margin-top: 10px;">Click 🤍 Save on any pattern to add it here.</p>
+                </div>
+            `;
+        } else {
+            this.dropdownElement.innerHTML = this.favorites.map(fav => `
+                <div style="padding: 10px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="cursor: pointer; flex: 1; color: #333;" class="fav-item" data-pattern="${fav}">${fav}</span>
+                    <button class="remove-fav" data-pattern="${fav}" style="background: #ff4757; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; font-size: 16px; line-height: 1;">×</button>
+                </div>
+            `).join('');
+            
+            // Add click handlers
+            this.dropdownElement.querySelectorAll('.fav-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const patternName = item.dataset.pattern;
+                    document.getElementById('pattern-input').value = patternName;
+                    generatePattern();
+                    this.dropdownElement.style.display = 'none';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+            
+            this.dropdownElement.querySelectorAll('.remove-fav').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.remove(btn.dataset.pattern);
+                });
+            });
+        }
+    }
+    
+    showNotification(message) {
+        const notification = document.createElement('div');
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            font-weight: 600;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 2500);
+    }
+}
+
+// Initialize favorites system
+const patternFavorites = new PatternFavorites();
+
+// 2. DARK MODE TOGGLE
+class DarkMode {
+    constructor() {
+        this.isDark = localStorage.getItem('darkMode') === 'true';
+        this.init();
+    }
+    
+    init() {
+        this.createToggle();
+        if (this.isDark) {
+            this.enable();
+        }
+    }
+    
+    createToggle() {
+        const toggle = document.createElement('button');
+        toggle.id = 'dark-mode-toggle';
+        toggle.innerHTML = this.isDark ? '☀️' : '🌙';
+        toggle.style.cssText = `
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        
+        toggle.addEventListener('click', () => {
+            this.toggle();
+        });
+        
+        document.body.appendChild(toggle);
+        this.toggleBtn = toggle;
+    }
+    
+    enable() {
+        document.body.classList.add('dark-mode');
+        this.isDark = true;
+        localStorage.setItem('darkMode', 'true');
+        if (this.toggleBtn) this.toggleBtn.innerHTML = '☀️';
+    }
+    
+    disable() {
+        document.body.classList.remove('dark-mode');
+        this.isDark = false;
+        localStorage.setItem('darkMode', 'false');
+        if (this.toggleBtn) this.toggleBtn.innerHTML = '🌙';
+    }
+    
+    toggle() {
+        if (this.isDark) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    }
+}
+
+// Initialize dark mode
+const darkMode = new DarkMode();
+
+// 3. PATTERN SEARCH & FILTER
+class PatternSearch {
+    constructor() {
+        this.init();
+    }
+    
+    init() {
+        const categorySection = document.querySelector('.pattern-categories');
+        if (!categorySection) return;
+        
+        const searchBar = document.createElement('div');
+        searchBar.innerHTML = `
+            <div style="max-width: 600px; margin: 20px auto 30px;">
+                <input 
+                    type="text" 
+                    id="pattern-search" 
+                    placeholder="🔍 Search patterns... (e.g., 'sweater', 'baby', 'amigurumi')"
+                    style="width: 100%; padding: 15px 20px; border: 2px solid #e0e0e0; border-radius: 30px; font-size: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: all 0.3s ease;"
+                />
+            </div>
+        `;
+        
+        categorySection.insertBefore(searchBar, categorySection.querySelector('h2').nextSibling);
+        
+        const searchInput = document.getElementById('pattern-search');
+        searchInput.addEventListener('input', (e) => {
+            this.filterPatterns(e.target.value);
+        });
+        
+        searchInput.addEventListener('focus', function() {
+            this.style.borderColor = '#667eea';
+            this.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.2)';
+        });
+        
+        searchInput.addEventListener('blur', function() {
+            this.style.borderColor = '#e0e0e0';
+            this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.08)';
+        });
+    }
+    
+    filterPatterns(query) {
+        const cards = document.querySelectorAll('.pattern-card');
+        const categories = document.querySelectorAll('.pattern-category');
+        const searchLower = query.toLowerCase().trim();
+        
+        if (searchLower === '') {
+            cards.forEach(card => card.style.display = 'block');
+            categories.forEach(cat => cat.style.display = 'block');
+            return;
+        }
+        
+        let hasVisibleCards = false;
+        
+        categories.forEach(category => {
+            const categoryCards = category.querySelectorAll('.pattern-card');
+            let categoryHasVisible = false;
+            
+            categoryCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchLower) || description.includes(searchLower)) {
+                    card.style.display = 'block';
+                    categoryHasVisible = true;
+                    hasVisibleCards = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            category.style.display = categoryHasVisible ? 'block' : 'none';
+        });
+        
+        // Show "no results" message
+        let noResults = document.getElementById('no-search-results');
+        if (!hasVisibleCards) {
+            if (!noResults) {
+                noResults = document.createElement('div');
+                noResults.id = 'no-search-results';
+                noResults.style.cssText = 'text-align: center; padding: 40px; color: #999;';
+                noResults.innerHTML = `
+                    <h3>No patterns found for "${query}"</h3>
+                    <p>Try a different search term or browse all categories below.</p>
+                `;
+                document.querySelector('.pattern-categories').appendChild(noResults);
+            }
+        } else if (noResults) {
+            noResults.remove();
+        }
+    }
+}
+
+// Initialize pattern search
+const patternSearch = new PatternSearch();
+
+// 4. SHARE PATTERN FEATURE
+function addShareButton() {
+    const patternTitle = document.querySelector('#pattern-output h2');
+    if (patternTitle && !document.getElementById('share-btn')) {
+        const shareBtn = document.createElement('button');
+        shareBtn.id = 'share-btn';
+        shareBtn.innerHTML = '🔗 Share';
+        shareBtn.style.cssText = `
+            margin-left: 10px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        `;
+        
+        shareBtn.addEventListener('click', async () => {
+            const patternName = patternTitle.textContent.replace('❤️ Saved', '').replace('🤍 Save', '').replace('🔗 Share', '').trim();
+            const url = `${window.location.origin}${window.location.pathname}?pattern=${encodeURIComponent(patternName)}`;
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: patternName,
+                        text: `Check out this ${patternName} on Crochet Buddy!`,
+                        url: url
+                    });
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        copyToClipboard(url);
+                    }
+                }
+            } else {
+                copyToClipboard(url);
+            }
+        });
+        
+        patternTitle.appendChild(shareBtn);
+    }
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showNotification('🔗 Link copied to clipboard!');
+    }).catch(() => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showNotification('🔗 Link copied to clipboard!');
+    });
+}
+
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        z-index: 10000;
+        animation: slideInRight 0.3s ease;
+        font-weight: 600;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 2500);
+}
+
+// Add share button when pattern is generated
+const patternOutputObserver = new MutationObserver(() => {
+    addShareButton();
+});
+
+const patternOutputElement = document.getElementById('pattern-output');
+if (patternOutputElement) {
+    patternOutputObserver.observe(patternOutputElement, { childList: true, subtree: true });
+}
+
+// Check for shared pattern in URL
+window.addEventListener('load', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sharedPattern = urlParams.get('pattern');
+    if (sharedPattern) {
+        document.getElementById('pattern-input').value = decodeURIComponent(sharedPattern);
+        setTimeout(() => {
+            generatePattern();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 500);
+    }
+});
