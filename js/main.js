@@ -283,162 +283,282 @@ async function generateCrochetPattern(request) {
 }
 
 function generateAmigurumiPattern(request) {
+    const itemName = request.replace(/amigurumi/gi, '').trim() || 'Character';
     return {
-        title: `Complete Amigurumi Pattern: ${capitalize(request)}`,
+        title: `Professional Amigurumi Pattern: ${capitalize(itemName)}`,
         content: `
             <h3>Materials Needed</h3>
             <ul>
-                <li>Worsted weight yarn in main color (brown/tan) - 100g</li>
-                <li>Small amounts of contrasting colors (white, black, pink)</li>
-                <li>4.0mm (G/6) crochet hook</li>
-                <li>Yarn needle for sewing and embroidery</li>
-                <li>Safety eyes 10-12mm (or black yarn for embroidered eyes)</li>
-                <li>Polyester fiberfill stuffing</li>
-                <li>Stitch markers</li>
+                <li>Worsted weight yarn (4) in main color - 100-150g (approximately 200-300 yards)</li>
+                <li>Small amounts (10-20g each) of contrasting colors for details</li>
+                <li>4.0mm (G/6) crochet hook (or size needed to obtain gauge)</li>
+                <li>3.5mm (E/4) crochet hook for tighter areas (optional)</li>
+                <li>Yarn needle with large eye for sewing and embroidery</li>
+                <li>Safety eyes 10-12mm (or 6mm for smaller features)</li>
+                <li>Premium polyester fiberfill stuffing (machine washable)</li>
+                <li>Stitch markers (at least 4)</li>
+                <li>Row counter (highly recommended)</li>
                 <li>Scissors</li>
+                <li>Pins for positioning before sewing</li>
             </ul>
             
-            <h3>Pattern Details</h3>
-            <p><strong>Skill Level:</strong> Beginner to Intermediate</p>
-            <p><strong>Finished Size:</strong> Approximately 8-10 inches tall</p>
-            <p><strong>Gauge:</strong> Not critical for amigurumi, but keep tension tight</p>
+            <h3>Pattern Specifications</h3>
+            <p><strong>Skill Level:</strong> Intermediate (requires knowledge of basic stitches and working in rounds)</p>
+            <p><strong>Finished Size:</strong> Approximately 9-11 inches tall (size varies based on tension and stuffing)</p>
+            <p><strong>Gauge:</strong> 16 stitches x 16 rounds = 4 inches in single crochet (CRITICAL for size consistency)</p>
+            <p><strong>Construction:</strong> Worked in continuous spiral rounds (do not join unless specified)</p>
+            <p><strong>Estimated Time:</strong> 6-10 hours depending on experience</p>
             
-            <h3>Abbreviations</h3>
+            <h3>Abbreviations & Special Stitches</h3>
             <ul>
-                <li><strong>ch</strong> - chain</li>
+                <li><strong>ch</strong> - chain stitch</li>
                 <li><strong>sc</strong> - single crochet</li>
-                <li><strong>inc</strong> - increase (2 sc in one stitch)</li>
-                <li><strong>dec</strong> - decrease (sc two stitches together)</li>
+                <li><strong>inc</strong> - increase (work 2 sc in same stitch)</li>
+                <li><strong>dec</strong> - invisible decrease (insert hook in front loops of next 2 sts, yo, pull through both loops, yo, pull through 2 loops on hook)</li>
                 <li><strong>st(s)</strong> - stitch(es)</li>
                 <li><strong>rnd</strong> - round</li>
                 <li><strong>sl st</strong> - slip stitch</li>
+                <li><strong>BLO</strong> - back loop only</li>
+                <li><strong>FLO</strong> - front loop only</li>
+                <li><strong>[ ]</strong> - total stitch count for round</li>
             </ul>
             
-            <h3>Head (Make 1)</h3>
-            <p><em>Start with main color</em></p>
+            <h3>Important Notes Before Starting</h3>
+            <ul>
+                <li>⚠️ <strong>Tension is CRITICAL</strong> - Keep stitches tight so stuffing doesn't show through</li>
+                <li>📍 Use a stitch marker to mark the beginning of each round</li>
+                <li>🔢 Count your stitches at the end of EVERY round</li>
+                <li>📝 Keep a tally of rounds completed (mistakes are easier to fix early)</li>
+                <li>🧶 Don't cut yarn between color changes - carry it inside</li>
+                <li>👁️ Position safety eyes BEFORE closing the head</li>
+            </ul>
+            
+            <h3>HEAD (Make 1)</h3>
+            <p><em>Use main color throughout</em></p>
+            <ol>
+                <li><strong>Rnd 1:</strong> Make a magic ring, 6 sc in ring. Do NOT join. Place marker. [6]</li>
+                <li><strong>Rnd 2:</strong> Inc in each st around [12]</li>
+                <li><strong>Rnd 3:</strong> (Sc, inc) repeat 6 times [18]</li>
+                <li><strong>Rnd 4:</strong> (2 sc, inc) repeat 6 times [24]</li>
+                <li><strong>Rnd 5:</strong> (3 sc, inc) repeat 6 times [30]</li>
+                <li><strong>Rnd 6:</strong> (4 sc, inc) repeat 6 times [36]</li>
+                <li><strong>Rnd 7:</strong> (5 sc, inc) repeat 6 times [42]</li>
+                <li><strong>Rnds 8-14:</strong> Sc in each st around [42] (7 rounds total - creates proper head height)</li>
+                <li><strong>Rnd 15:</strong> (5 sc, dec) repeat 6 times [36]</li>
+                <li><strong>Rnd 16:</strong> (4 sc, dec) repeat 6 times [30]</li>
+                <li>⏸️ <strong>STOP HERE:</strong> Insert safety eyes between rounds 11-12, spacing them 8-9 stitches apart</li>
+                <li><strong>Rnd 17:</strong> (3 sc, dec) repeat 6 times [24]</li>
+                <li>🧶 Begin stuffing head firmly but not overly tight</li>
+                <li><strong>Rnd 18:</strong> (2 sc, dec) repeat 6 times [18]</li>
+                <li>Continue stuffing, shaping head as you go</li>
+                <li><strong>Rnd 19:</strong> (Sc, dec) repeat 6 times [12]</li>
+                <li>Add final bits of stuffing</li>
+                <li><strong>Rnd 20:</strong> Dec repeat 6 times [6]</li>
+                <li>Fasten off, leaving 12" tail. Thread through remaining stitches, pull tight to close. Weave end inside.</li>
+            </ol>
+            
+            <h3>BODY (Make 1)</h3>
+            <p><em>Use main color</em></p>
             <ol>
                 <li><strong>Rnd 1:</strong> Magic ring, 6 sc in ring [6]</li>
                 <li><strong>Rnd 2:</strong> Inc in each st around [12]</li>
-                <li><strong>Rnd 3:</strong> (Sc, inc) x 6 [18]</li>
-                <li><strong>Rnd 4:</strong> (2 sc, inc) x 6 [24]</li>
-                <li><strong>Rnd 5:</strong> (3 sc, inc) x 6 [30]</li>
-                <li><strong>Rnd 6:</strong> (4 sc, inc) x 6 [36]</li>
-                <li><strong>Rnd 7-12:</strong> Sc in each st around [36] (6 rounds)</li>
-                <li><strong>Rnd 13:</strong> (4 sc, dec) x 6 [30]</li>
-                <li><strong>Rnd 14:</strong> (3 sc, dec) x 6 [24]</li>
-                <li>Insert safety eyes between rounds 9-10, about 6-7 stitches apart</li>
-                <li><strong>Rnd 15:</strong> (2 sc, dec) x 6 [18]</li>
-                <li>Stuff head firmly</li>
-                <li><strong>Rnd 16:</strong> (Sc, dec) x 6 [12]</li>
-                <li><strong>Rnd 17:</strong> Dec around [6]</li>
-                <li>Fasten off, leaving long tail. Close opening with yarn needle.</li>
+                <li><strong>Rnd 3:</strong> (Sc, inc) repeat 6 times [18]</li>
+                <li><strong>Rnd 4:</strong> (2 sc, inc) repeat 6 times [24]</li>
+                <li><strong>Rnd 5:</strong> (3 sc, inc) repeat 6 times [30]</li>
+                <li><strong>Rnd 6:</strong> (4 sc, inc) repeat 6 times [36]</li>
+                <li><strong>Rnds 7-13:</strong> Sc in each st around [36] (7 rounds - creates cylindrical body)</li>
+                <li><strong>Rnd 14:</strong> (4 sc, dec) repeat 6 times [30]</li>
+                <li><strong>Rnds 15-16:</strong> Sc in each st around [30] (2 rounds)</li>
+                <li><strong>Rnd 17:</strong> (3 sc, dec) repeat 6 times [24]</li>
+                <li><strong>Rnd 18:</strong> Sc in each st around [24]</li>
+                <li><strong>Rnd 19:</strong> (2 sc, dec) repeat 6 times [18]</li>
+                <li>🧶 Begin stuffing body firmly. Shape as you stuff for best results.</li>
+                <li><strong>Rnd 20:</strong> Sc in each st around [18]</li>
+                <li>Continue stuffing to desired firmness</li>
+                <li>Fasten off, leaving 24" tail for sewing to head</li>
             </ol>
             
-            <h3>Body (Make 1)</h3>
+            <h3>ARMS (Make 2)</h3>
+            <p><em>Optional: Use contrasting color for paws/hands</em></p>
             <ol>
                 <li><strong>Rnd 1:</strong> Magic ring, 6 sc in ring [6]</li>
                 <li><strong>Rnd 2:</strong> Inc in each st around [12]</li>
-                <li><strong>Rnd 3:</strong> (Sc, inc) x 6 [18]</li>
-                <li><strong>Rnd 4:</strong> (2 sc, inc) x 6 [24]</li>
-                <li><strong>Rnd 5:</strong> (3 sc, inc) x 6 [30]</li>
-                <li><strong>Rnd 6-11:</strong> Sc in each st around [30] (6 rounds)</li>
-                <li><strong>Rnd 12:</strong> (3 sc, dec) x 6 [24]</li>
-                <li><strong>Rnd 13-14:</strong> Sc in each st around [24] (2 rounds)</li>
-                <li><strong>Rnd 15:</strong> (2 sc, dec) x 6 [18]</li>
-                <li>Stuff body firmly</li>
-                <li><strong>Rnd 16:</strong> Sc in each st around [18]</li>
-                <li>Fasten off, leaving long tail for sewing to head</li>
+                <li><strong>Rnd 3:</strong> Sc in each st around [12]</li>
+                <li><strong>Rnd 4:</strong> (Sc, dec) repeat 4 times [8]</li>
+                <li>Change to main color if using contrasting color for hands</li>
+                <li><strong>Rnds 5-16:</strong> Sc in each st around [8] (12 rounds - adjust for desired arm length)</li>
+                <li>Stuff lower half of arm lightly (leave upper half unstuffed for poseable arms)</li>
+                <li>Flatten opening and sc through both sides (4-5 sc across)</li>
+                <li>Fasten off, leaving 18" tail for sewing</li>
             </ol>
             
-            <h3>Arms (Make 2)</h3>
-            <ol>
-                <li><strong>Rnd 1:</strong> Magic ring, 6 sc in ring [6]</li>
-                <li><strong>Rnd 2:</strong> (Sc, inc) x 3 [9]</li>
-                <li><strong>Rnd 3-12:</strong> Sc in each st around [9] (10 rounds)</li>
-                <li>Stuff lightly (only bottom half)</li>
-                <li>Flatten opening and sc across (4-5 sc)</li>
-                <li>Fasten off, leaving long tail for sewing</li>
-            </ol>
-            
-            <h3>Legs (Make 2)</h3>
+            <h3>LEGS (Make 2)</h3>
+            <p><em>Optional: Use contrasting color for feet</em></p>
             <ol>
                 <li><strong>Rnd 1:</strong> Magic ring, 6 sc in ring [6]</li>
                 <li><strong>Rnd 2:</strong> Inc in each st around [12]</li>
-                <li><strong>Rnd 3-4:</strong> Sc in each st around [12] (2 rounds)</li>
-                <li><strong>Rnd 5:</strong> (2 sc, dec) x 3 [9]</li>
-                <li><strong>Rnd 6-11:</strong> Sc in each st around [9] (6 rounds)</li>
-                <li>Stuff firmly</li>
-                <li>Flatten opening and sc across (4-5 sc)</li>
-                <li>Fasten off, leaving long tail for sewing</li>
+                <li><strong>Rnd 3:</strong> (Sc, inc) repeat 6 times [18]</li>
+                <li><strong>Rnds 4-5:</strong> Sc in each st around [18] (2 rounds - creates foot)</li>
+                <li><strong>Rnd 6:</strong> (Sc, dec) repeat 6 times [12]</li>
+                <li><strong>Rnd 7:</strong> (2 sc, dec) repeat 3 times [9]</li>
+                <li>Change to main color if using contrasting color for feet</li>
+                <li><strong>Rnds 8-15:</strong> Sc in each st around [9] (8 rounds - adjust for leg length)</li>
+                <li>Stuff leg firmly for stability</li>
+                <li>Flatten opening and sc through both sides (4-5 sc across)</li>
+                <li>Fasten off, leaving 18" tail for sewing</li>
             </ol>
             
-            <h3>Ears (Make 2)</h3>
+            <h3>EARS (Make 2)</h3>
+            <p><em>Style: Basic round ears (adjust for character-specific shapes)</em></p>
             <ol>
                 <li><strong>Rnd 1:</strong> Magic ring, 6 sc in ring [6]</li>
                 <li><strong>Rnd 2:</strong> Inc in each st around [12]</li>
-                <li><strong>Rnd 3:</strong> (Sc, inc) x 6 [18]</li>
+                <li><strong>Rnd 3:</strong> (Sc, inc) repeat 6 times [18]</li>
                 <li><strong>Rnd 4:</strong> Sc in each st around [18]</li>
-                <li>Flatten and fasten off, leaving long tail for sewing</li>
+                <li>Do NOT stuff ears</li>
+                <li>Flatten and fasten off, leaving 12" tail for sewing</li>
             </ol>
             
-            <h3>Tail (Optional)</h3>
+            <h3>TAIL (Make 1)</h3>
             <ol>
                 <li><strong>Rnd 1:</strong> Magic ring, 5 sc in ring [5]</li>
-                <li><strong>Rnd 2-8:</strong> Sc in each st around [5] (7 rounds)</li>
-                <li>Do not stuff</li>
-                <li>Fasten off, leaving long tail for sewing</li>
+                <li><strong>Rnds 2-10:</strong> Sc in each st around [5] (9 rounds - adjust for desired length)</li>
+                <li>Do NOT stuff (allows tail to be poseable)</li>
+                <li>Fasten off, leaving 12" tail for sewing</li>
             </ol>
             
-            <h3>Muzzle/Snout (Make 1)</h3>
-            <p><em>Use contrasting color (cream/tan)</em></p>
+            <h3>MUZZLE/SNOUT (Make 1)</h3>
+            <p><em>Use cream, tan, or white contrast color</em></p>
             <ol>
                 <li><strong>Rnd 1:</strong> Magic ring, 6 sc in ring [6]</li>
                 <li><strong>Rnd 2:</strong> Inc in each st around [12]</li>
-                <li><strong>Rnd 3:</strong> (Sc, inc) x 6 [18]</li>
-                <li><strong>Rnd 4:</strong> Sc in each st around [18]</li>
-                <li>Stuff lightly</li>
-                <li>Fasten off, leaving long tail for sewing</li>
+                <li><strong>Rnd 3:</strong> (Sc, inc) repeat 6 times [18]</li>
+                <li><strong>Rnd 4:</strong> Sc in BLO in each st around [18] (creates lip)</li>
+                <li><strong>Rnd 5:</strong> Sc in each st around [18]</li>
+                <li>Stuff lightly - should be plump but not hard</li>
+                <li>Fasten off, leaving 15" tail for sewing</li>
             </ol>
             
-            <h3>Assembly Instructions</h3>
+            <h3>DETAILED ASSEMBLY INSTRUCTIONS</h3>
+            
+            <h4>Step 1: Attach Head to Body</h4>
             <ol>
-                <li><strong>Attach Head to Body:</strong> Position head on top of body and sew securely all around using whip stitch</li>
-                <li><strong>Attach Muzzle:</strong> Position muzzle on lower front of face (between eyes) and sew around edges</li>
-                <li><strong>Attach Ears:</strong> Sew ears to top sides of head, slightly angled outward</li>
-                <li><strong>Attach Arms:</strong> Sew arms to sides of body at shoulder level (round 2-3 of body)</li>
-                <li><strong>Attach Legs:</strong> Sew legs to bottom front of body so figure can sit</li>
-                <li><strong>Attach Tail:</strong> Sew tail to back of body at bottom</li>
-                <li><strong>Embroider Details:</strong>
-                    <ul>
-                        <li>Use black yarn to embroider nose on muzzle (small triangle or oval)</li>
-                        <li>Embroider mouth line below nose with backstitch</li>
-                        <li>Add eyebrow stitches above eyes if desired</li>
-                        <li>Embroider paw pads on hands and feet with pink yarn (optional)</li>
-                    </ul>
-                </li>
-                <li><strong>Final Touches:</strong> Weave in all ends securely. Brush out any fuzzy areas.</li>
+                <li>Position head on top of body with eyes facing forward</li>
+                <li>Pin in place and check alignment from all angles</li>
+                <li>Using whip stitch, sew completely around where head meets body</li>
+                <li>Go around 2-3 times for extra strength</li>
+                <li>Weave end securely inside body</li>
             </ol>
             
-            <h3>Tips for Success</h3>
+            <h4>Step 2: Attach Muzzle/Snout</h4>
+            <ol>
+                <li>Position muzzle centered on lower face, between eyes</li>
+                <li>Pin to test placement (try different positions!)</li>
+                <li>Sew around edge using whip stitch</li>
+                <li>Weave in end</li>
+            </ol>
+            
+            <h4>Step 3: Attach Ears</h4>
+            <ol>
+                <li>Fold ears slightly at base for dimension</li>
+                <li>Position on top sides of head (rounds 6-10)</li>
+                <li>Angle slightly outward for realistic look</li>
+                <li>Sew securely around base of each ear</li>
+            </ol>
+            
+            <h4>Step 4: Attach Arms</h4>
+            <ol>
+                <li>Position arms at sides of body (rounds 2-4 of body)</li>
+                <li>Pin and check that both are level</li>
+                <li>Sew across flattened top of arm, then around sides</li>
+                <li>Ensure arms can move/pose if desired</li>
+            </ol>
+            
+            <h4>Step 5: Attach Legs</h4>
+            <ol>
+                <li>Position legs at bottom front of body for sitting pose</li>
+                <li>Space evenly apart (about 4-5 stitches between)</li>
+                <li>Sew securely so figure is stable when sitting</li>
+            </ol>
+            
+            <h4>Step 6: Attach Tail</h4>
+            <ol>
+                <li>Position tail at center back of body, bottom third</li>
+                <li>Sew in circular motion around base</li>
+                <li>Reinforce with second round of stitching</li>
+            </ol>
+            
+            <h4>Step 7: Embroider Facial Features</h4>
+            <ol>
+                <li><strong>Nose:</strong> Use black yarn to embroider small triangle or oval on muzzle</li>
+                <li><strong>Mouth:</strong> Add backstitch line below nose, curve into smile</li>
+                <li><strong>Eyebrows:</strong> Optional - stitch above eyes for expression</li>
+                <li><strong>Cheeks:</strong> Optional - add pink french knots or circles</li>
+                <li><strong>Details:</strong> Add paw pads, belly button, or character-specific features</li>
+            </ol>
+            
+            <h3>PRO FINISHING TECHNIQUES</h3>
             <ul>
-                <li>✨ Keep your tension TIGHT - stuffing should not show through stitches</li>
-                <li>✨ Use stitch markers to track beginning of rounds</li>
-                <li>✨ Count stitches at end of each round to avoid mistakes</li>
-                <li>✨ Stuff as you go - it's easier than trying to stuff at the end</li>
-                <li>✨ Don't overstuff limbs - they should be poseable</li>
-                <li>✨ Use safety eyes BEFORE closing up the head</li>
-                <li>✨ Position limbs before sewing - pin them in place first</li>
-                <li>✨ Weave ends through stuffing for extra security</li>
+                <li>✨ Use a felting needle to smooth any fuzzy spots</li>
+                <li>✨ Brush gently with a soft brush for furry texture (if using fuzzy yarn)</li>
+                <li>✨ Steam lightly (test on swatch first!) to even out stitches</li>
+                <li>✨ Add weight (poly pellets) to bottom for better sitting stability</li>
+                <li>✨ Use dental floss to sew eyes for extra security (if making for baby)</li>
             </ul>
             
-            <h3>Customization Ideas</h3>
+            <h3>TIPS FOR SUCCESS</h3>
             <ul>
-                <li>🎨 Use different colors for unique variations</li>
-                <li>🎀 Add a bow tie or ribbon around neck</li>
-                <li>👕 Crochet a tiny vest or outfit</li>
-                <li>🌟 Add stripes or color changes to limbs</li>
-                <li>💝 Make it bigger or smaller by changing hook size</li>
+                <li>✨ <strong>Tension Control:</strong> Your stitches should be tight enough that you can't see through them when held to light</li>
+                <li>✨ <strong>Stuffing Technique:</strong> Add small amounts at a time, shaping as you go. Use stuffing stick or chopstick to reach corners</li>
+                <li>✨ <strong>Color Changes:</strong> Change colors in last pull-through of previous stitch for cleanest transition</li>
+                <li>✨ <strong>Magic Ring:</strong> Leave long tail and weave through ring several times for security</li>
+                <li>✨ <strong>Counting Stitches:</strong> Use different colored stitch markers every 10 stitches for easy counting</li>
+                <li>✨ <strong>Eye Placement:</strong> Standard is rounds 11-12, spaced 8-9 sts apart, but try pinning first!</li>
+                <li>✨ <strong>Seaming:</strong> Always pin pieces before sewing. Take photos to remember placement!</li>
+                <li>✨ <strong>Weaving Ends:</strong> Weave through 5-6 stitches, change direction, weave back through different path</li>
             </ul>
+            
+            <h3>CUSTOMIZATION IDEAS</h3>
+            <ul>
+                <li>🎨 <strong>Size Variations:</strong> Use sport weight + 3.5mm hook for mini (5-6"), or bulky + 6mm for jumbo (14-16")</li>
+                <li>🎨 <strong>Stripes:</strong> Add stripes to body or limbs by changing colors every 2-3 rounds</li>
+                <li>🎨 <strong>Accessories:</strong> Add bow tie, scarf, hat, or clothing</li>
+                <li>🎨 <strong>Hair/Mane:</strong> Add yarn loops or fringe for hair</li>
+                <li>🎨 <strong>Wings:</strong> Crochet flat wing shapes and attach to back</li>
+                <li>🎨 <strong>Expressions:</strong> Change eye size/placement and mouth shape for different personalities</li>
+            </ul>
+            
+            <h3>TROUBLESHOOTING</h3>
+            <ul>
+                <li>❓ <strong>Stuffing showing through?</strong> Your tension is too loose. Try smaller hook or tighter stitches.</li>
+                <li>❓ <strong>Piece curling?</strong> You may be increasing too fast. Count carefully!</li>
+                <li>❓ <strong>Piece ruffling?</strong> Too many increases. Check stitch count.</li>
+                <li>❓ <strong>Head wobbling?</strong> Add more stuffing and reinforce neck seam.</li>
+                <li>❓ <strong>Can't find beginning of round?</strong> Always use a stitch marker!</li>
+                <li>❓ <strong>Eyes look wonky?</strong> Remove and reposition before securing. Test with pins first.</li>
+                <li>❓ <strong>Lumpy stuffing?</strong> Use high-quality fiberfill and stuff in small amounts.</li>
+            </ul>
+            
+            <h3>CARE INSTRUCTIONS</h3>
+            <ul>
+                <li>🧼 Hand wash in cool water with mild detergent</li>
+                <li>💧 Gently squeeze out excess water (never wring!)</li>
+                <li>�️ Lay flat on towel to dry, reshaping as needed</li>
+                <li>☀️ Keep out of direct sunlight to prevent fading</li>
+                <li>🧸 Store in cool, dry place when not displayed</li>
+            </ul>
+            
+            <h3>SAFETY NOTES FOR BABIES/CHILDREN</h3>
+            <ul>
+                <li>⚠️ For babies under 3: EMBROIDER eyes instead of using safety eyes</li>
+                <li>⚠️ Embroider all features - no buttons, beads, or removable parts</li>
+                <li>⚠️ Use cotton yarn for easy washing and safety</li>
+                <li>⚠️ Weave ends extra securely (5-6 passes through stitches)</li>
+                <li>⚠️ Test all seams by pulling firmly before giving to child</li>
+                <li>⚠️ Regularly inspect for wear and re-secure any loose parts</li>
+            </ul>
+            
+            <p><strong>🧶 Enjoy creating your adorable amigurumi! With practice, you'll develop your own style and techniques. Don't be afraid to experiment! ✨</strong></p>
         `
     };
 }
@@ -635,182 +755,506 @@ function generatePonchoPattern(request) {
 }
 
 function generateSweaterPattern(request) {
+    const size = request.match(/\b(xs|small|medium|large|xl|2xl|3xl)\b/i);
+    const sizeGuide = size ? size[0].toUpperCase() : 'MEDIUM';
+    
     return {
-        title: `Complete ${capitalize(request)} Pattern`,
+        title: `Professional ${capitalize(request)} Pattern - All Sizes`,
         content: `
             <h3>Materials Needed</h3>
             <ul>
-                <li>Worsted weight yarn (4) - 1200-1800 yards depending on size</li>
-                <li>5.0mm (H/8) crochet hook</li>
-                <li>4.5mm (7) crochet hook for ribbing</li>
-                <li>Yarn needle</li>
-                <li>Stitch markers</li>
-                <li>Measuring tape</li>
+                <li>Worsted weight yarn (4) - See yardage chart below</li>
+                <li>5.0mm (H/8) crochet hook for main body</li>
+                <li>4.5mm (G/7) crochet hook for ribbing</li>
+                <li>High-quality yarn needle for seaming</li>
+                <li>4-6 removable stitch markers</li>
+                <li>Measuring tape (60" minimum)</li>
+                <li>Scissors</li>
+                <li>Blocking mat and pins (recommended)</li>
             </ul>
             
-            <h3>Sizing</h3>
-            <p>Pattern written for: XS (S, M, L, XL, 2XL)</p>
-            <p><strong>Finished Bust:</strong> 32 (36, 40, 44, 48, 52)"</p>
-            <p><strong>Finished Length:</strong> 22 (23, 24, 25, 26, 27)"</p>
+            <h3>Yarn Requirements by Size</h3>
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Size</th>
+                    <th>Yards Needed</th>
+                    <th>Grams (approx)</th>
+                    <th>Skeins (200yd each)</th>
+                </tr>
+                <tr><td>XS</td><td>1100-1250 yds</td><td>500-550g</td><td>6 skeins</td></tr>
+                <tr><td>S</td><td>1250-1400 yds</td><td>550-630g</td><td>7 skeins</td></tr>
+                <tr><td>M</td><td>1400-1600 yds</td><td>630-720g</td><td>8 skeins</td></tr>
+                <tr><td>L</td><td>1600-1800 yds</td><td>720-810g</td><td>9 skeins</td></tr>
+                <tr><td>XL</td><td>1800-2000 yds</td><td>810-900g</td><td>10 skeins</td></tr>
+                <tr><td>2XL</td><td>2000-2200 yds</td><td>900-990g</td><td>11 skeins</td></tr>
+            </table>
             
-            <h3>Gauge</h3>
-            <p>16 stitches x 18 rows = 4 inches in half double crochet with larger hook</p>
-            <p><em>GAUGE IS CRITICAL! Make a swatch and adjust hook size if needed.</em></p>
+            <h3>Finished Measurements</h3>
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Size</th>
+                    <th>Bust</th>
+                    <th>Length</th>
+                    <th>Sleeve Length</th>
+                    <th>Shoulder Width</th>
+                </tr>
+                <tr><td>XS</td><td>32"</td><td>22"</td><td>17"</td><td>14"</td></tr>
+                <tr><td>S</td><td>36"</td><td>23"</td><td>17.5"</td><td>15"</td></tr>
+                <tr><td>M</td><td>40"</td><td>24"</td><td>18"</td><td>16"</td></tr>
+                <tr><td>L</td><td>44"</td><td>25"</td><td>18.5"</td><td>17"</td></tr>
+                <tr><td>XL</td><td>48"</td><td>26"</td><td>19"</td><td>18"</td></tr>
+                <tr><td>2XL</td><td>52"</td><td>27"</td><td>19.5"</td><td>19"</td></tr>
+            </table>
             
-            <h3>Back Panel</h3>
-            <h4>Foundation:</h4>
-            <p>With larger hook, ch 65 (73, 81, 89, 97, 105)</p>
+            <h3>Pattern Specifications</h3>
+            <p><strong>Skill Level:</strong> Intermediate (requires basic construction knowledge)</p>
+            <p><strong>Recommended Ease:</strong> 2-4 inches positive ease for comfortable fit</p>
+            <p><strong>Estimated Time:</strong> 25-40 hours depending on size and experience</p>
+            <p><strong>Construction Method:</strong> Bottom-up, seamed pieces</p>
             
-            <h4>Body:</h4>
+            <h3>CRITICAL: Gauge Information</h3>
+            <p><strong>Gauge with 5.0mm hook:</strong> 16 stitches x 18 rows = 4 inches in half double crochet</p>
+            <p>⚠️ <strong>GAUGE IS ESSENTIAL!</strong> Your sweater will not fit correctly if gauge is off.</p>
+            
+            <h4>How to Check Gauge:</h4>
             <ol>
-                <li><strong>Row 1 (WS):</strong> Hdc in 3rd ch from hook, hdc in each ch across, turn [64, 72, 80, 88, 96, 104 hdc]</li>
-                <li><strong>Row 2:</strong> Ch 2 (counts as hdc), hdc in each st across, turn</li>
-                <li><strong>Rows 3-66:</strong> Repeat Row 2 until piece measures 22 (23, 24, 25, 26, 27)" or desired length</li>
+                <li>Chain 24 with 5.0mm hook</li>
+                <li>Work in half double crochet for 24 rows</li>
+                <li>Block swatch lightly with steam</li>
+                <li>Measure center 4" square - should have exactly 16 sts x 18 rows</li>
+                <li><strong>Too many stitches?</strong> Use larger hook (5.5mm)</li>
+                <li><strong>Too few stitches?</strong> Use smaller hook (4.5mm)</li>
+                <li>Make new swatch and recheck until gauge matches</li>
+            </ol>
+            
+            <h3>Abbreviations & Stitches</h3>
+            <ul>
+                <li><strong>ch</strong> - chain stitch</li>
+                <li><strong>sc</strong> - single crochet</li>
+                <li><strong>hdc</strong> - half double crochet</li>
+                <li><strong>dc</strong> - double crochet</li>
+                <li><strong>hdc2tog</strong> - half double crochet 2 together (decrease)</li>
+                <li><strong>st(s)</strong> - stitch(es)</li>
+                <li><strong>RS</strong> - right side</li>
+                <li><strong>WS</strong> - wrong side</li>
+                <li><strong>BLO</strong> - back loop only</li>
+                <li><strong>FLO</strong> - front loop only</li>
+                <li><strong>FPsc</strong> - front post single crochet</li>
+                <li><strong>BPsc</strong> - back post single crochet</li>
+                <li><strong>[ ]</strong> - stitch count</li>
+                <li><strong>( )</strong> - instructions to repeat</li>
+            </ul>
+            
+            <h3>BACK PANEL</h3>
+            
+            <h4>Foundation & Ribbing:</h4>
+            <p><em>With 4.5mm hook</em></p>
+            <ol>
+                <li><strong>Foundation Chain:</strong> Ch 65 (73, 81, 89, 97, 105)</li>
+                <li><strong>Row 1 (WS):</strong> Sc in 2nd ch from hook, sc in each ch across, turn [64, 72, 80, 88, 96, 104 sc]</li>
+                <li><strong>Row 2:</strong> Ch 1, sc in BLO in each st across, turn [64, 72, 80, 88, 96, 104]</li>
+                <li><strong>Rows 3-8:</strong> Repeat Row 2 (creates 2" of ribbing)</li>
+                <li>Switch to 5.0mm hook</li>
+            </ol>
+            
+            <h4>Body Section:</h4>
+            <ol start="9">
+                <li><strong>Row 9 (RS):</strong> Ch 2 (counts as first hdc here and throughout), hdc in each st across, turn [64, 72, 80, 88, 96, 104 hdc]</li>
+                <li><strong>Row 10:</strong> Ch 2, hdc in each st across, turn</li>
+                <li><strong>Rows 11-70:</strong> Repeat Row 10 until piece measures 14 (14.5, 15, 15.5, 16, 16.5)" from bottom of ribbing, or desired length to underarm</li>
+                <li>⏸️ <strong>Measure as you go!</strong> Try on periodically to check length</li>
+            </ol>
+            
+            <h4>Armhole Shaping:</h4>
+            <ol start="71">
+                <li><strong>Row 71:</strong> Sl st across first 4 (5, 6, 7, 8, 9) sts, ch 2, hdc across until 4 (5, 6, 7, 8, 9) sts remain, turn, leave remaining sts unworked [56, 62, 68, 74, 80, 86 hdc]</li>
+                <li><strong>Row 72:</strong> Ch 2, hdc2tog, hdc across to last 2 sts, hdc2tog, turn [54, 60, 66, 72, 78, 84]</li>
+                <li><strong>Rows 73-74:</strong> Repeat Row 72 [50, 56, 62, 68, 74, 80 hdc after Row 74]</li>
+                <li><strong>Rows 75-102:</strong> Ch 2, hdc in each st across, turn (work even for 7-8" or until armhole measures 8 (8.5, 9, 9.5, 10, 10.5)")</li>
             </ol>
             
             <h4>Shoulder Shaping:</h4>
-            <ol>
-                <li><strong>Row 67:</strong> Sl st across first 8 (10, 12, 14, 16, 18) sts, ch 2, hdc across until 8 (10, 12, 14, 16, 18) sts remain, turn</li>
+            <ol start="103">
+                <li><strong>Row 103:</strong> Sl st across first 6 (7, 8, 9, 10, 11) sts, ch 2, hdc across until 6 (7, 8, 9, 10, 11) sts remain, turn [38, 42, 46, 50, 54, 58]</li>
+                <li><strong>Row 104:</strong> Sl st across first 6 (7, 8, 9, 10, 11) sts, ch 2, hdc across until 6 (7, 8, 9, 10, 11) sts remain [26, 28, 30, 32, 34, 36]</li>
+                <li>Fasten off. This creates the back neck opening.</li>
+            </ol>
+            
+            <h3>FRONT PANEL</h3>
+            <p>Work same as back through Row 95 (before shoulder shaping begins)</p>
+            
+            <h4>Neck Shaping - Left Side:</h4>
+            <ol start="96">
+                <li><strong>Row 96:</strong> Ch 2, hdc in next 16 (18, 20, 22, 24, 26) sts only, turn (leave remaining sts unworked) [17, 19, 21, 23, 25, 27 hdc including ch-2]</li>
+                <li><strong>Row 97:</strong> Ch 2, hdc2tog, hdc across, turn [16, 18, 20, 22, 24, 26]</li>
+                <li><strong>Row 98:</strong> Ch 2, hdc across to last 2 sts, hdc2tog, turn [15, 17, 19, 21, 23, 25]</li>
+                <li><strong>Rows 99-102:</strong> Alternate Rows 97-98 (decrease at neck edge every row) [12, 14, 16, 18, 20, 22 after Row 102]</li>
+                <li>Continue even if needed until front matches back length to shoulder</li>
+            </ol>
+            
+            <h4>Shoulder Shaping - Left Side:</h4>
+            <ol start="103">
+                <li><strong>Row 103:</strong> Sl st across first 6 (7, 8, 9, 10, 11) sts (armhole edge), ch 2, hdc across, turn [6, 7, 8, 9, 10, 11]</li>
+                <li><strong>Row 104:</strong> Ch 2, hdc across</li>
                 <li>Fasten off</li>
             </ol>
             
-            <h3>Front Panel</h3>
-            <p>Work same as back through Row 60</p>
-            
-            <h4>Neck Shaping:</h4>
+            <h4>Neck Shaping - Right Side:</h4>
             <ol>
-                <li><strong>Row 61:</strong> Ch 2, hdc in next 20 (24, 28, 32, 36, 40) sts, turn (leave remaining sts unworked)</li>
-                <li><strong>Row 62:</strong> Ch 2, hdc2tog, hdc across, turn</li>
-                <li><strong>Rows 63-66:</strong> Continue decreasing 1 st at neck edge each row</li>
-                <li>Fasten off</li>
-                <li>Rejoin yarn to opposite side and work to match, reversing shaping</li>
+                <li>With RS facing, skip center 16 (18, 20, 22, 24, 26) sts for neck opening</li>
+                <li>Join yarn to next st, ch 2, hdc across, turn [17, 19, 21, 23, 25, 27]</li>
+                <li>Work to match left side, reversing all shaping</li>
             </ol>
             
-            <h3>Sleeves (Make 2)</h3>
-            <h4>Cuff with Smaller Hook:</h4>
+            <h3>SLEEVES (Make 2 identical)</h3>
+            
+            <h4>Cuff Ribbing:</h4>
+            <p><em>With 4.5mm hook</em></p>
             <ol>
-                <li>Ch 33 (35, 37, 39, 41, 43)</li>
-                <li><strong>Row 1:</strong> Sc in 2nd ch from hook, *FPsc, BPsc*, repeat across, turn</li>
-                <li><strong>Rows 2-8:</strong> Ch 1, *FPsc, BPsc*, repeat across, turn</li>
-                <li>Switch to larger hook</li>
+                <li><strong>Foundation:</strong> Ch 33 (35, 37, 39, 41, 43)</li>
+                <li><strong>Row 1:</strong> Sc in 2nd ch from hook, sc in each ch across, turn [32, 34, 36, 38, 40, 42 sc]</li>
+                <li><strong>Row 2:</strong> Ch 1, sc in BLO in each st across, turn</li>
+                <li><strong>Rows 3-10:</strong> Repeat Row 2 (creates 2.5" ribbed cuff)</li>
+                <li>Switch to 5.0mm hook</li>
             </ol>
             
             <h4>Sleeve Body:</h4>
-            <ol>
-                <li><strong>Row 9:</strong> Ch 2, hdc in each st across, turn</li>
-                <li><strong>Row 10:</strong> Ch 2, 2 hdc in first st, hdc across to last st, 2 hdc in last st, turn</li>
-                <li><strong>Rows 11-15:</strong> Ch 2, hdc across, turn</li>
-                <li><strong>Row 16:</strong> Repeat Row 10 (increase row)</li>
-                <li>Continue working 5 rows even, then 1 increase row until sleeve measures 17 (17.5, 18, 18.5, 19, 19.5)" or desired length</li>
-                <li>Fasten off</li>
+            <ol start="11">
+                <li><strong>Row 11 (RS):</strong> Ch 2, hdc in each st across, turn [32, 34, 36, 38, 40, 42 hdc]</li>
+                <li><strong>Row 12:</strong> Ch 2, hdc in each st across, turn</li>
+                <li><strong>Rows 13-17:</strong> Repeat Row 12 (work 5 rows even)</li>
+                <li><strong>Row 18 (Increase Row):</strong> Ch 2, 2 hdc in first st, hdc across to last st, 2 hdc in last st, turn [34, 36, 38, 40, 42, 44]</li>
+                <li><strong>Rows 19-23:</strong> Ch 2, hdc in each st across, turn (work 5 rows even)</li>
+                <li><strong>Row 24 (Increase Row):</strong> Ch 2, 2 hdc in first st, hdc across to last st, 2 hdc in last st, turn [36, 38, 40, 42, 44, 46]</li>
+                <li><strong>Continue</strong> working 5 rows even, then 1 increase row (as established) until you have 50 (54, 58, 62, 66, 70) sts</li>
+                <li>Work even until sleeve measures 17 (17.5, 18, 18.5, 19, 19.5)" from bottom of cuff, or desired length to underarm</li>
             </ol>
             
-            <h3>Assembly</h3>
+            <h4>Sleeve Cap Shaping:</h4>
             <ol>
-                <li>Block all pieces to measurements</li>
-                <li>Sew shoulder seams using mattress stitch</li>
-                <li>Mark sleeve placement (8-9" down from shoulder on each side)</li>
-                <li>Sew sleeves to armholes</li>
-                <li>Sew side seams and sleeve seams in one continuous line</li>
+                <li><strong>Next Row:</strong> Sl st across first 4 (5, 6, 7, 8, 9) sts, ch 2, hdc across until 4 (5, 6, 7, 8, 9) sts remain, turn [42, 44, 46, 48, 50, 52]</li>
+                <li><strong>Next Row:</strong> Ch 2, hdc2tog, hdc across to last 2 sts, hdc2tog, turn [40, 42, 44, 46, 48, 50]</li>
+                <li><strong>Repeat decrease row</strong> every row 10 (11, 12, 13, 14, 15) more times [20, 20, 20, 20, 20, 20]</li>
+                <li>Fasten off, leaving 24" tail for seaming</li>
             </ol>
             
-            <h3>Neck Ribbing</h3>
+            <h3>PROFESSIONAL ASSEMBLY INSTRUCTIONS</h3>
+            
+            <h4>Step 1: Block All Pieces</h4>
             <ol>
-                <li>With smaller hook and RS facing, join yarn at back neck</li>
-                <li><strong>Rnd 1:</strong> Ch 1, work sc evenly around neck opening, join</li>
-                <li><strong>Rnds 2-6:</strong> Ch 1, work in ribbing st pattern (FPsc, BPsc) around, join</li>
-                <li>Fasten off and weave in ends</li>
+                <li>Lay pieces flat on blocking mat</li>
+                <li>Pin to schematic measurements</li>
+                <li>Lightly steam or mist with water</li>
+                <li>Allow to dry completely (24 hours minimum)</li>
+                <li>⚠️ <strong>Do NOT skip blocking!</strong> It makes seaming infinitely easier</li>
             </ol>
             
-            <h3>Bottom Ribbing</h3>
+            <h4>Step 2: Seam Shoulders</h4>
             <ol>
-                <li>With smaller hook and RS facing, join yarn at side seam</li>
-                <li><strong>Rnd 1:</strong> Ch 1, sc evenly around bottom edge, join</li>
-                <li><strong>Rnds 2-6:</strong> Ch 1, work in ribbing st pattern around, join</li>
-                <li>Fasten off</li>
+                <li>Place front and back pieces with right sides together</li>
+                <li>Match shoulder edges stitch by stitch</li>
+                <li>Using mattress stitch or invisible seaming method, join shoulders</li>
+                <li>Weave in ends as you go</li>
             </ol>
             
-            <h3>Pro Tips</h3>
+            <h4>Step 3: Set in Sleeves</h4>
+            <ol>
+                <li>Find center top of sleeve cap, mark with pin</li>
+                <li>Match center of sleeve to shoulder seam</li>
+                <li>Pin sleeve in place, easing any fullness evenly</li>
+                <li>Seam from underarm up one side, across top, down other side</li>
+                <li>Check that sleeve hangs smoothly before securing</li>
+                <li>Repeat for second sleeve</li>
+            </ol>
+            
+            <h4>Step 4: Side and Sleeve Seams</h4>
+            <ol>
+                <li>Start at bottom hem, seam up side of body</li>
+                <li>Continue seam down sleeve in one continuous line</li>
+                <li>Match ribbing carefully for clean finish</li>
+                <li>Repeat for other side</li>
+            </ol>
+            
+            <h3>NECKLINE FINISHING</h3>
+            <p><em>With 4.5mm hook and RS facing</em></p>
+            <ol>
+                <li><strong>Rnd 1:</strong> Join yarn at left shoulder seam, ch 1, work sc evenly around entire neck opening (approximately 70-80 sc), join with sl st to first sc</li>
+                <li><strong>Rnd 2:</strong> Ch 1, sc in BLO in each st around, join</li>
+                <li><strong>Rnds 3-5:</strong> Repeat Rnd 2 (creates 1" ribbed neckline)</li>
+                <li>Fasten off and weave in end</li>
+            </ol>
+            
+            <h3>TROUBLESHOOTING GUIDE</h3>
             <ul>
-                <li>✨ Try on as you go to check fit before seaming</li>
-                <li>✨ Block pieces before assembly for professional finish</li>
-                <li>✨ Use mattress stitch for invisible seams</li>
-                <li>✨ Make sleeves longer or shorter to preference</li>
+                <li>❓ <strong>Sleeves too tight?</strong> Increase cuff foundation chain by 2-4 sts and add extra increases</li>
+                <li>❓ <strong>Body too short?</strong> Add 4-5 rows for each additional inch needed</li>
+                <li>❓ <strong>Neck too loose?</strong> Work neckline edging with smaller hook (4.0mm)</li>
+                <li>❓ <strong>Seams puckering?</strong> Your seaming tension is too tight - use a looser whip stitch</li>
+                <li>❓ <strong>Armholes gaping?</strong> Decrease more aggressively at underarm (6-8 sts instead of 4)</li>
+                <li>❓ <strong>Sleeves twisting?</strong> Mark right side of sleeve before seaming to avoid rotation</li>
+                <li>❓ <strong>Uneven stitch height?</strong> Your tension may be inconsistent - practice gauge swatch more</li>
             </ul>
             
-            <p><strong>Enjoy your cozy new sweater! 🧶</strong></p>
+            <h3>PROFESSIONAL TIPS</h3>
+            <ul>
+                <li>✨ <strong>Yarn Joins:</strong> Join new balls at side seams or underarms for invisible transitions</li>
+                <li>✨ <strong>Weaving Ends:</strong> Leave 6" tails minimum. Weave through 5-6 stitches in different directions</li>
+                <li>✨ <strong>Try-On:</strong> Try on before final assembly to check fit and make adjustments</li>
+                <li>✨ <strong>Washing:</strong> Hand wash in cool water, reshape while damp, lay flat to dry</li>
+                <li>✨ <strong>Storage:</strong> Fold rather than hang to prevent stretching at shoulders</li>
+                <li>✨ <strong>Modifications:</strong> Add pockets by seaming small squares to front panels before assembly</li>
+            </ul>
+            
+            <h3>CUSTOMIZATION IDEAS</h3>
+            <ul>
+                <li>🎨 <strong>Stripes:</strong> Change colors every 6-8 rows for bold horizontal stripes</li>
+                <li>🎨 <strong>Colorblock:</strong> Use different colors for sleeves and body</li>
+                <li>🎨 <strong>Texture:</strong> Substitute main stitch with moss stitch or v-stitch</li>
+                <li>🎨 <strong>Oversized Fit:</strong> Make 1-2 sizes larger and add 4-6" to length</li>
+                <li>🎨 <strong>Cropped Version:</strong> Reduce body length by 3-4" for trendy crop</li>
+            </ul>
+            
+            <p><strong>🧶 Congratulations on completing your handmade sweater! You've created a timeless wardrobe piece that will last for years. Wear it with pride! ✨</strong></p>
         `
     };
 }
 
 function generateCardiganPattern(request) {
+    const hasButtons = /button/i.test(request);
+    const isOpenFront = /open|waterfall/i.test(request);
+    
     return {
-        title: `Complete ${capitalize(request)} Pattern`,
+        title: `Professional ${capitalize(request)} Pattern - Complete Guide`,
         content: `
             <h3>Materials Needed</h3>
             <ul>
-                <li>Worsted weight yarn (4) - 1400-2000 yards</li>
-                <li>5.5mm (I/9) crochet hook</li>
-                <li>5-7 buttons (3/4" diameter)</li>
-                <li>Yarn needle</li>
-                <li>Stitch markers</li>
+                <li>Worsted weight yarn (4) - See yardage chart below</li>
+                <li>5.5mm (I/9) crochet hook for main body</li>
+                <li>5.0mm (H/8) crochet hook for edging (optional)</li>
+                <li>${hasButtons ? '5-7 buttons (3/4" to 1" diameter)' : 'No buttons needed for open-front style'}</li>
+                <li>High-quality yarn needle for seaming</li>
+                <li>Stitch markers (8-10 recommended)</li>
+                <li>Measuring tape</li>
+                <li>Pins for blocking</li>
+                <li>Row counter</li>
             </ul>
             
-            <h3>Sizing</h3>
-            <p>S/M (L/XL, 2X/3X)</p>
-            <p><strong>Finished Bust:</strong> 40 (48, 56)" with 4-6" positive ease</p>
+            <h3>Yarn Requirements by Size</h3>
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Size</th>
+                    <th>Yards Needed</th>
+                    <th>Approximate Weight</th>
+                </tr>
+                <tr><td>S/M</td><td>1400-1600 yds</td><td>700-800g</td></tr>
+                <tr><td>L/XL</td><td>1800-2000 yds</td><td>900-1000g</td></tr>
+                <tr><td>2X/3X</td><td>2100-2400 yds</td><td>1050-1200g</td></tr>
+            </table>
             
-            <h3>Gauge</h3>
-            <p>14 stitches x 16 rows = 4 inches in half double crochet</p>
+            <h3>Finished Measurements</h3>
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Size</th>
+                    <th>Bust (Closed)</th>
+                    <th>Length</th>
+                    <th>Sleeve Length</th>
+                </tr>
+                <tr><td>S/M</td><td>40"</td><td>24"</td><td>17"</td></tr>
+                <tr><td>L/XL</td><td>48"</td><td>26"</td><td>17.5"</td></tr>
+                <tr><td>2X/3X</td><td>56"</td><td>28"</td><td>18"</td></tr>
+            </table>
             
-            <h3>Construction Note</h3>
-            <p>This cardigan is worked in one piece from the top down with raglan shaping</p>
+            <h3>Pattern Specifications</h3>
+            <p><strong>Skill Level:</strong> Intermediate to Advanced</p>
+            <p><strong>Recommended Ease:</strong> 4-6 inches positive ease for comfortable layering</p>
+            <p><strong>Estimated Time:</strong> 30-50 hours</p>
+            <p><strong>Construction:</strong> Top-down raglan in one piece (minimal seaming!)</p>
             
-            <h3>Yoke</h3>
+            <h3>Gauge - CRITICAL</h3>
+            <p><strong>With 5.5mm hook:</strong> 14 stitches x 16 rows = 4 inches in half double crochet</p>
+            
+            <h4>Gauge Swatch Instructions:</h4>
+            <ol>
+                <li>Chain 22 stitches</li>
+                <li>Work in hdc for 20 rows</li>
+                <li>Block lightly with steam</li>
+                <li>Measure center 4" square (should be exactly 14 sts x 16 rows)</li>
+                <li><strong>Too many stitches?</strong> Use 6.0mm hook</li>
+                <li><strong>Too few stitches?</strong> Use 5.0mm hook</li>
+                <li>Recheck gauge after hook adjustment</li>
+            </ol>
+            
+            <h3>Abbreviations</h3>
+            <ul>
+                <li><strong>ch</strong> - chain</li>
+                <li><strong>sc</strong> - single crochet</li>
+                <li><strong>hdc</strong> - half double crochet</li>
+                <li><strong>hdc2tog</strong> - half double crochet 2 together</li>
+                <li><strong>st(s)</strong> - stitch(es)</li>
+                <li><strong>RS</strong> - right side</li>
+                <li><strong>WS</strong> - wrong side</li>
+                <li><strong>BLO</strong> - back loop only</li>
+                <li><strong>PM</strong> - place marker</li>
+                <li><strong>[ ]</strong> - stitch count</li>
+            </ul>
+            
+            <h3>YOKE - TOP DOWN RAGLAN CONSTRUCTION</h3>
+            
+            <h4>Starting Chain:</h4>
+            <p><em>This forms the neck edge - Size S/M (L/XL, 2X/3X)</em></p>
             <ol>
                 <li><strong>Foundation:</strong> Ch 50 (58, 66)</li>
-                <li><strong>Row 1:</strong> Hdc in 3rd ch from hook, hdc in next 6 (8, 10) sts (right front), 2 hdc in next st, hdc in next 8 (10, 12) sts (sleeve), 2 hdc in next st, hdc in next 14 (18, 22) sts (back), 2 hdc in next st, hdc in next 8 (10, 12) sts (sleeve), 2 hdc in next st, hdc in last 7 (9, 11) sts (left front), turn</li>
-                <li><strong>Row 2-20:</strong> Ch 2, hdc across, working 2 hdc in each marked increase st, turn</li>
-                <li>Continue raglan increases until yoke measures 7 (8, 9)" from beginning</li>
+                <li>Do NOT join - work back and forth in rows</li>
             </ol>
             
-            <h3>Divide for Body and Sleeves</h3>
+            <h4>Setting Up Raglan Lines:</h4>
+            <p><em>We'll create 4 raglan increase lines: one at each shoulder</em></p>
             <ol>
-                <li><strong>Next Row:</strong> Ch 2, hdc across front sts, ch 4 (underarm), skip sleeve sts, hdc across back sts, ch 4 (underarm), skip sleeve sts, hdc across remaining front sts, turn</li>
-                <li>Continue working back and forth on body sts only</li>
+                <li><strong>Row 1 (WS):</strong> Hdc in 3rd ch from hook, hdc in next 6 (8, 10) chs <strong>[Right Front = 7, 9, 11 hdc]</strong>, PM in next st, 2 hdc in marked st <strong>[Raglan 1]</strong>, hdc in next 8 (10, 12) chs <strong>[Right Sleeve = 9, 11, 13 hdc]</strong>, PM in next st, 2 hdc in marked st <strong>[Raglan 2]</strong>, hdc in next 14 (18, 22) chs <strong>[Back = 15, 19, 23 hdc]</strong>, PM in next st, 2 hdc in marked st <strong>[Raglan 3]</strong>, hdc in next 8 (10, 12) chs <strong>[Left Sleeve = 9, 11, 13 hdc]</strong>, PM in next st, 2 hdc in marked st <strong>[Raglan 4]</strong>, hdc in last 7 (9, 11) chs <strong>[Left Front = 7, 9, 11 hdc]</strong>, turn [52, 60, 68 hdc + 4 raglan increases]</li>
             </ol>
             
-            <h3>Body</h3>
+            <h4>Raglan Increase Rows:</h4>
+            <ol start="2">
+                <li><strong>Row 2 (RS):</strong> Ch 2 (counts as first hdc), hdc in each st across to first marked st, 2 hdc in marked st, *hdc in each st to next marked st, 2 hdc in marked st*, repeat from * 3 more times, hdc in remaining sts, turn [56, 64, 72 hdc - increased 4 sts]</li>
+                <li><strong>Rows 3-20:</strong> Repeat Row 2 (increase 4 sts every row at the 4 raglan lines) [128, 136, 144 hdc after Row 20]</li>
+                <li>Continue raglan increases until yoke measures 7 (8, 9)" from beginning neck edge OR when sleeve section has approximately 45 (50, 55) stitches</li>
+                <li>⏸️ <strong>Try-On Checkpoint:</strong> Carefully try on to check shoulder drop and sleeve width</li>
+            </ol>
+            
+            <h3>DIVIDE FOR BODY AND SLEEVES</h3>
+            
+            <h4>Separation Row:</h4>
             <ol>
-                <li>Work even in hdc until body measures 14 (15, 16)" from underarm</li>
-                <li>Work 6 rows of ribbing (sc in BLO)</li>
+                <li><strong>Next Row:</strong> Ch 2, hdc across RIGHT FRONT stitches to first raglan marker (remove marker), ch 4 <strong>[underarm chain]</strong>, skip all RIGHT SLEEVE stitches to next raglan marker (remove marker), hdc across all BACK stitches to next raglan marker (remove marker), ch 4 <strong>[underarm chain]</strong>, skip all LEFT SLEEVE stitches to final raglan marker (remove marker), hdc across LEFT FRONT stitches, turn</li>
+                <li>You should now have: Right Front + ch-4 + Back + ch-4 + Left Front</li>
+                <li>Count total sts (approximately 110-140 depending on size)</li>
+            </ol>
+            
+            <h3>BODY SECTION</h3>
+            
+            <h4>Main Body:</h4>
+            <ol>
+                <li><strong>Row 1:</strong> Ch 2, hdc in each st and ch across, turn</li>
+                <li><strong>Rows 2-60:</strong> Ch 2, hdc in each st across, turn</li>
+                <li>Continue working even until body measures 14 (15, 16)" from underarm, or 3" shorter than desired finished length</li>
+                <li>⏸️ <strong>Length Check:</strong> Try on to verify length before edging</li>
+            </ol>
+            
+            <h4>Bottom Ribbing Edge:</h4>
+            <ol>
+                <li><strong>Row 1:</strong> Ch 1, sc in BLO in each st across, turn</li>
+                <li><strong>Rows 2-6:</strong> Repeat Row 1 (creates 1.5" ribbed edge)</li>
+                <li>Fasten off and weave in end</li>
+            </ol>
+            
+            <h3>SLEEVES (Work both separately)</h3>
+            
+            <h4>Rejoining Yarn:</h4>
+            <ol>
+                <li>With RS facing, join yarn at center of underarm (in one of the 4 ch from separation row)</li>
+                <li>PM to mark beginning of round</li>
+            </ol>
+            
+            <h4>Sleeve Body - Worked in Rounds:</h4>
+            <ol start="2">
+                <li><strong>Rnd 1:</strong> Ch 2, work 2 hdc in same underarm ch, hdc in next 2 underarm chs, hdc in each sleeve st around, hdc in remaining underarm ch, join to top of ch-2 [approximately 48-54 hdc]</li>
+                <li><strong>Rnds 2-9:</strong> Ch 2, hdc in each st around, join (work 8 rounds even)</li>
+                <li><strong>Rnd 10 (Decrease Rnd):</strong> Ch 2, hdc2tog, hdc around to last 2 sts, hdc2tog, join [46-52 hdc]</li>
+                <li><strong>Rnds 11-19:</strong> Ch 2, hdc in each st around, join (work 9 rounds even)</li>
+                <li><strong>Rnd 20 (Decrease Rnd):</strong> Ch 2, hdc2tog, hdc around to last 2 sts, hdc2tog, join [44-50 hdc]</li>
+                <li>Continue working 9 rounds even, then 1 decrease round until sleeve measures 16 (16.5, 17)" from underarm OR 2" shorter than desired length</li>
+            </ol>
+            
+            <h4>Cuff Ribbing:</h4>
+            <ol>
+                <li><strong>Rnd 1:</strong> Ch 1, sc in BLO in each st around, join [approximately 40-46 sc]</li>
+                <li><strong>Rnds 2-8:</strong> Repeat Rnd 1 (creates 2" ribbed cuff)</li>
+                <li>Fasten off and weave in ends</li>
+                <li>Repeat entire sleeve process for second sleeve</li>
+            </ol>
+            
+            <h3>FRONT BANDS & FINISHING</h3>
+            
+            <h4>Right Front Band (Buttonhole Band):</h4>
+            <p><em>With RS facing and 5.0mm hook (or same hook)</em></p>
+            <ol>
+                <li>Join yarn at bottom right front corner</li>
+                <li><strong>Row 1:</strong> Ch 1, work sc evenly up entire right front edge to neck, turn (approximately 85-95 sc)</li>
+                <li><strong>Row 2:</strong> Ch 1, sc in each st across, turn</li>
+                <li>${hasButtons ? `<strong>Row 3 (Buttonhole Row):</strong> Ch 1, sc in first 3-4 sts, *ch 2, skip 2 sts (buttonhole made), sc in next 15-18 sts*, repeat from * 4-6 more times for total of 5-7 buttonholes evenly spaced, sc in remaining sts, turn` : `<strong>Row 3:</strong> Ch 1, sc in each st across, turn`}</li>
+                <li>${hasButtons ? `<strong>Row 4:</strong> Ch 1, sc in each st and ch-2 space across (work 2 sc in each ch-2 space), turn` : `<strong>Row 4:</strong> Ch 1, sc in each st across, turn`}</li>
+                <li><strong>Row 5:</strong> Ch 1, sc in each st across</li>
                 <li>Fasten off</li>
             </ol>
             
-            <h3>Sleeves</h3>
+            <h4>Left Front Band (Button Band):</h4>
             <ol>
-                <li>Join yarn at underarm</li>
-                <li>Work in rounds, decreasing 2 sts every 8th round</li>
-                <li>Continue until sleeve measures 17 (18, 19)" or desired length</li>
-                <li>Work 8 rounds of ribbing</li>
+                <li>Join yarn at neck edge of left front with RS facing</li>
+                <li><strong>Row 1:</strong> Ch 1, work sc evenly down entire left front edge, turn (match right band stitch count)</li>
+                <li><strong>Rows 2-5:</strong> Ch 1, sc in each st across, turn</li>
                 <li>Fasten off</li>
             </ol>
             
-            <h3>Front Bands & Buttonholes</h3>
+            <h4>Neck Edging:</h4>
             <ol>
-                <li>Work sc evenly up right front, around neck, and down left front</li>
-                <li>On buttonhole band: *Sc 15, ch 2, skip 2 sts*, repeat for each buttonhole</li>
-                <li>Work 2 more rows of sc, working 2 sc in each ch-2 space</li>
+                <li>With RS facing, join yarn at top of right front band</li>
+                <li><strong>Row 1:</strong> Ch 1, work sc evenly across back neck edge, turn (approximately 40-50 sc)</li>
+                <li><strong>Rows 2-3:</strong> Ch 1, sc in each st across, turn</li>
+                <li>Fasten off and weave in end</li>
             </ol>
             
-            <h3>Finishing</h3>
+            <h3>FINAL ASSEMBLY</h3>
+            <ol>
+                <li>Weave in all remaining ends (use duplicate stitch method for security)</li>
+                <li>Block cardigan to measurements (pin out and steam or wet block)</li>
+                <li>${hasButtons ? 'Mark button placement opposite buttonholes using pins' : 'No buttons needed for this open-front style'}</li>
+                <li>${hasButtons ? 'Sew buttons securely with matching thread (reinforce with yarn)' : ''}</li>
+                <li>Steam seams lightly if needed</li>
+            </ol>
+            
+            <h3>TROUBLESHOOTING</h3>
             <ul>
-                <li>Weave in all ends</li>
-                <li>Block to measurements</li>
-                <li>Sew on buttons</li>
+                <li>❓ <strong>Raglan lines not straight?</strong> Make sure you're increasing in the exact same marked stitch each row</li>
+                <li>❓ <strong>Sleeves too tight?</strong> Continue raglan increases for 2-4 more rows before separating</li>
+                <li>❓ <strong>Body flaring out?</strong> Your gauge may be loose - try smaller hook for body section</li>
+                <li>❓ <strong>Neck too loose/tight?</strong> Adjust starting chain by 4-6 stitches</li>
+                <li>❓ <strong>Buttonholes too big?</strong> Ch 1 and skip 1 st instead of ch 2, skip 2 sts</li>
+                <li>❓ <strong>Front bands curling?</strong> Work bands with hook one size smaller</li>
+                <li>❓ <strong>Sleeves twisting?</strong> Mark RS before starting sleeve rounds</li>
             </ul>
             
-            <p><strong>Your cardigan is ready to wear! 🧥</strong></p>
+            <h3>PROFESSIONAL TIPS</h3>
+            <ul>
+                <li>✨ <strong>Even Edges:</strong> For front bands, aim for 3 sc for every 4 rows of hdc</li>
+                <li>✨ <strong>Button Spacing:</strong> Place first button 1" from bottom, last 1" from neck, space others evenly</li>
+                <li>✨ <strong>Blocking:</strong> Block BEFORE adding buttons - fabric may grow 1-2"</li>
+                <li>✨ <strong>Seamless Look:</strong> Weave underarm chains carefully to avoid holes</li>
+                <li>✨ <strong>Drape Test:</strong> Hang overnight before final blocking to let fabric settle</li>
+                <li>✨ <strong>Reinforcement:</strong> Add extra stitching at underarm points for durability</li>
+            </ul>
+            
+            <h3>CUSTOMIZATION IDEAS</h3>
+            <ul>
+                <li>🎨 <strong>Pockets:</strong> Add patch pockets to front panels (make 6x6" squares and sew on)</li>
+                <li>🎨 <strong>Colorblock:</strong> Change colors at yoke/body separation line</li>
+                <li>🎨 <strong>Stripe Pattern:</strong> Work stripes in body section only</li>
+                <li>🎨 <strong>Longer Length:</strong> Add 4-6" to body for duster-style cardigan</li>
+                <li>🎨 <strong>3/4 Sleeves:</strong> Stop sleeves at 12-13" for bracelet length</li>
+                <li>🎨 <strong>Shawl Collar:</strong> Continue neck edging for 4-6" for fold-over collar</li>
+                <li>🎨 <strong>Belt:</strong> Crochet a chain 60" long, weave through stitches at waist</li>
+            </ul>
+            
+            <h3>CARE INSTRUCTIONS</h3>
+            <ul>
+                <li>🧼 Hand wash in cool water with wool wash</li>
+                <li>💧 Gently squeeze out water (never wring or twist)</li>
+                <li>🌡️ Roll in towel to remove excess moisture</li>
+                <li>📏 Lay flat on blocking mat, reshape to measurements</li>
+                <li>⏰ Air dry completely (24-48 hours)</li>
+                <li>🧴 Store folded, not hanging (prevents shoulder stretching)</li>
+            </ul>
+            
+            <p><strong>🧶 Congratulations! You've created a beautiful, professional cardigan that you'll treasure for years. The top-down raglan construction makes this incredibly customizable - don't hesitate to adjust as you go! ✨</strong></p>
         `
     };
 }
