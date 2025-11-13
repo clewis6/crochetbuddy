@@ -2077,4 +2077,56 @@ if (logo) {
 // Console welcome message
 console.log('%cWelcome to CrochetBuddy! 🧶', 'color: #e91e63; font-size: 24px; font-weight: bold;');
 console.log('%cYour AI-powered crochet pattern generator', 'color: #764ba2; font-size: 14px;');
-console.log('%c40+ Free Patterns Available!', 'color: #4caf50; font-size: 16px; font-weight: bold;');
+console.log('%c80+ Free Patterns Available!', 'color: #4caf50; font-size: 16px; font-weight: bold;');
+
+// Premium Features
+
+// Scroll to top button
+const scrollToTopBtn = document.getElementById('scrollToTop');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+});
+
+if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// Add ripple effect to buttons
+document.querySelectorAll('.btn-primary, .category-btn, .generate-pattern-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple-effect');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+    });
+});
+
+// Parallax effect for hero section
+window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        hero.style.opacity = Math.max(1 - scrolled / 600, 0);
+    }
+});

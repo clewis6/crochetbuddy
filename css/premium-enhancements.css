@@ -1,0 +1,489 @@
+/* Premium Million-Dollar Enhancements */
+
+/* Enhanced animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(233, 30, 99, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(233, 30, 99, 0.8); }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Premium gradient overlays for hero */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Enhanced pattern cards with premium hover effects */
+.pattern-card {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.pattern-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+.pattern-card:hover::after {
+    opacity: 1;
+}
+
+.pattern-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+}
+
+/* Premium button effects */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+}
+
+/* Category buttons with glow effect */
+.category-btn {
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.category-btn:hover {
+    animation: pulse-glow 2s infinite;
+    transform: translateY(-4px) scale(1.08);
+}
+
+/* Enhanced textarea with premium styling */
+textarea {
+    transition: all 0.3s ease;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+textarea:focus {
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+    background: linear-gradient(to bottom, #ffffff 0%, #fafcff 100%);
+}
+
+/* Suggestion buttons with ripple effect */
+.suggestion-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.suggestion-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.suggestion-btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.suggestion-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.suggestion-btn:hover {
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+    color: white;
+    border-color: transparent;
+}
+
+/* Enhanced pattern output with smooth reveal */
+.pattern-output {
+    animation: slideInUp 0.6s ease-out;
+}
+
+/* Premium section headers */
+h2 {
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+h2::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    border-radius: 2px;
+}
+
+/* Pattern generator with glass morphism */
+.pattern-generator {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Enhanced pattern preview with animation */
+.pattern-preview {
+    position: relative;
+    overflow: hidden;
+}
+
+.pattern-preview::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    animation: shimmer 3s infinite;
+}
+
+/* Loading spinner enhancement */
+.btn-loading {
+    display: inline-block;
+    animation: spin 1s linear infinite, pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Blog card image overlay effect */
+.blog-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pattern-card:hover .blog-image::after,
+.blog-card:hover .blog-image::after {
+    opacity: 1;
+}
+
+/* Generate Pattern Button Premium Styling */
+.generate-pattern-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.generate-pattern-btn:hover {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+}
+
+/* Premium scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* Smooth page load animation */
+body {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Premium category cards grid with stagger animation */
+.blog-grid {
+    display: grid;
+}
+
+.blog-grid > * {
+    animation: slideInUp 0.6s ease-out backwards;
+}
+
+.blog-grid > *:nth-child(1) { animation-delay: 0.05s; }
+.blog-grid > *:nth-child(2) { animation-delay: 0.1s; }
+.blog-grid > *:nth-child(3) { animation-delay: 0.15s; }
+.blog-grid > *:nth-child(4) { animation-delay: 0.2s; }
+.blog-grid > *:nth-child(5) { animation-delay: 0.25s; }
+.blog-grid > *:nth-child(6) { animation-delay: 0.3s; }
+
+/* Popular patterns section enhancement */
+.popular-link {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+}
+
+.popular-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #667eea 0%, #f093fb 100%);
+    transition: width 0.3s ease;
+}
+
+.popular-link:hover::before {
+    width: 100%;
+}
+
+.popular-link:hover {
+    transform: translateX(5px);
+    color: var(--primary-color);
+}
+
+/* Footer enhancement */
+.footer {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #667eea 50%, transparent 100%);
+}
+
+/* Pattern title with gradient */
+#patternTitle {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Copy and Save buttons enhancement */
+#copyPattern, #savePattern {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+#copyPattern:hover, #savePattern:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .pattern-card:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px) scale(1.02);
+    }
+    
+    .category-btn:hover {
+        transform: translateY(-2px) scale(1.03);
+    }
+}
+
+/* Add micro-interactions */
+.pattern-card, .btn-primary, .category-btn, .suggestion-btn {
+    will-change: transform;
+}
+
+/* Floating scroll-to-top button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 999;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+    animation: pulse-glow 2s infinite;
+}
+
+.scroll-to-top:active {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Premium focus states for accessibility */
+button:focus-visible, a:focus-visible {
+    outline: 3px solid #667eea;
+    outline-offset: 3px;
+    border-radius: 8px;
+}
+
+/* Enhanced loading state */
+.btn-primary:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 0.9; }
+}
+
+/* Ripple effect */
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    transform: scale(0);
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Premium badge for featured patterns */
+.pattern-card:nth-child(-n+4)::before {
+    content: '✨ NEW';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
