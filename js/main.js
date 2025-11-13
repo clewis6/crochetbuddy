@@ -220,18 +220,48 @@ async function generateCrochetPattern(request) {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Detect what type of item is being requested
+    // Detect what type of item is being requested (most specific patterns first)
     const isPoncho = /poncho/i.test(request);
-    const isAmigurumi = /monkey|bunny|bear|cat|dog|animal|creature|character|octopus|elephant|frog|turtle|bird|fox|lion|tiger|giraffe|penguin|owl|unicorn|dragon|dinosaur|mouse|rat|hamster|pig|cow|sheep|horse|zebra|koala|panda|sloth|raccoon|squirrel|bee|butterfly|ladybug|spider|fish|whale|dolphin|shark|snake|cactus|mushroom|flower|fruit|strawberry|avocado|lemon|apple|watermelon|pumpkin|ghost|monster|alien|robot/i.test(request);
-    const isBlanket = /blanket|afghan|throw|bedspread|coverlet/i.test(request);
-    const isClothing = /cardigan|sweater|scarf|hat|beanie|beret|shawl|vest|jacket|coat|mittens|gloves|socks|slippers|bolero|cape|cowl|headband|ear warmer|wrist warmer|leg warmer/i.test(request);
-    const isBaby = /baby|infant|newborn|bib|bootie|bonnet|onesie|diaper cover|mobile|teether|rattle/i.test(request);
-    const isAccessory = /bag|purse|tote|backpack|pouch|wallet|clutch|market bag|basket|coaster|placemat|potholder|dishcloth|washcloth|scrubby/i.test(request);
-    const isHomeDecor = /pillow|cushion|rug|mat|wall hanging|garland|bunting|wreath|doily|table runner|tablecloth/i.test(request);
-    const isToy = /toy|ball|blocks|teether|sensory/i.test(request) && !isAmigurumi;
+    const isSweater = /sweater|pullover|jumper|turtleneck/i.test(request) && !/cardigan/.test(request);
+    const isCardigan = /cardigan/i.test(request);
+    const isScarf = /scarf|cowl/i.test(request);
+    const isHat = /\b(hat|beanie|beret|cap|toque)\b/i.test(request);
+    const isShawl = /shawl|wrap/i.test(request) && !/skirt/.test(request);
+    const isSocks = /\bsocks?\b/i.test(request);
+    const isMittens = /mittens?|gloves?/i.test(request);
+    const isSlippers = /slippers?/i.test(request);
+    const isBag = /\b(bag|tote|purse|pouch)\b/i.test(request);
+    const isGrannySquare = /granny\s*square/i.test(request);
+    const isAmigurumi = /amigurumi|monkey|bunny|bear|cat|dog|animal|creature|character|octopus|elephant|frog|turtle|bird|fox|lion|tiger|giraffe|penguin|owl|unicorn|dragon|dinosaur|mouse|rat|hamster|pig|cow|sheep|lamb|horse|zebra|koala|panda|sloth|raccoon|squirrel|bee|butterfly|ladybug|spider|fish|whale|dolphin|shark|narwhal|snake/i.test(request);
+    const isBlanket = /blanket|afghan|throw(?!\s*pillow)|bedspread|coverlet|lovey/i.test(request);
+    const isClothing = /vest|jacket|coat|bolero|cape|headband|ear\s*warmer|wrist\s*warmer|leg\s*warmer|tank|crop\s*top|skirt|dress/i.test(request);
+    const isBaby = /baby|infant|newborn|bib|bootie|bonnet|onesie|diaper\s*cover|mobile|teether|rattle|pacifier|cocoon|bunting|playmat/i.test(request);
+    const isAccessory = /basket|coaster|placemat|potholder|dishcloth|washcloth|scrubby/i.test(request);
+    const isHomeDecor = /pillow|cushion|rug|mat|wall\s*hanging|garland|bunting|wreath|doily|table\s*runner|tablecloth|stocking|christmas|planter|plant\s*holder|pouf|ottoman|tieback|valance|lampshade|wine/i.test(request);
+    const isToy = /toy|ball|blocks|sensory/i.test(request) && !isAmigurumi;
     
     if (isPoncho) {
         return generatePonchoPattern(request);
+    } else if (isSweater) {
+        return generateSweaterPattern(request);
+    } else if (isCardigan) {
+        return generateCardiganPattern(request);
+    } else if (isScarf) {
+        return generateScarfPattern(request);
+    } else if (isHat) {
+        return generateHatPattern(request);
+    } else if (isShawl) {
+        return generateShawlPattern(request);
+    } else if (isSocks) {
+        return generateSocksPattern(request);
+    } else if (isMittens) {
+        return generateMittensPattern(request);
+    } else if (isSlippers) {
+        return generateSlippersPattern(request);
+    } else if (isBag) {
+        return generateBagPattern(request);
+    } else if (isGrannySquare) {
+        return generateGrannySquarePattern(request);
     } else if (isAmigurumi) {
         return generateAmigurumiPattern(request);
     } else if (isBlanket) {
@@ -600,6 +630,734 @@ function generatePonchoPattern(request) {
             </ul>
             
             <p><strong>Enjoy your cozy new poncho! 🧶✨</strong></p>
+        `
+    };
+}
+
+function generateSweaterPattern(request) {
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted weight yarn (4) - 1200-1800 yards depending on size</li>
+                <li>5.0mm (H/8) crochet hook</li>
+                <li>4.5mm (7) crochet hook for ribbing</li>
+                <li>Yarn needle</li>
+                <li>Stitch markers</li>
+                <li>Measuring tape</li>
+            </ul>
+            
+            <h3>Sizing</h3>
+            <p>Pattern written for: XS (S, M, L, XL, 2XL)</p>
+            <p><strong>Finished Bust:</strong> 32 (36, 40, 44, 48, 52)"</p>
+            <p><strong>Finished Length:</strong> 22 (23, 24, 25, 26, 27)"</p>
+            
+            <h3>Gauge</h3>
+            <p>16 stitches x 18 rows = 4 inches in half double crochet with larger hook</p>
+            <p><em>GAUGE IS CRITICAL! Make a swatch and adjust hook size if needed.</em></p>
+            
+            <h3>Back Panel</h3>
+            <h4>Foundation:</h4>
+            <p>With larger hook, ch 65 (73, 81, 89, 97, 105)</p>
+            
+            <h4>Body:</h4>
+            <ol>
+                <li><strong>Row 1 (WS):</strong> Hdc in 3rd ch from hook, hdc in each ch across, turn [64, 72, 80, 88, 96, 104 hdc]</li>
+                <li><strong>Row 2:</strong> Ch 2 (counts as hdc), hdc in each st across, turn</li>
+                <li><strong>Rows 3-66:</strong> Repeat Row 2 until piece measures 22 (23, 24, 25, 26, 27)" or desired length</li>
+            </ol>
+            
+            <h4>Shoulder Shaping:</h4>
+            <ol>
+                <li><strong>Row 67:</strong> Sl st across first 8 (10, 12, 14, 16, 18) sts, ch 2, hdc across until 8 (10, 12, 14, 16, 18) sts remain, turn</li>
+                <li>Fasten off</li>
+            </ol>
+            
+            <h3>Front Panel</h3>
+            <p>Work same as back through Row 60</p>
+            
+            <h4>Neck Shaping:</h4>
+            <ol>
+                <li><strong>Row 61:</strong> Ch 2, hdc in next 20 (24, 28, 32, 36, 40) sts, turn (leave remaining sts unworked)</li>
+                <li><strong>Row 62:</strong> Ch 2, hdc2tog, hdc across, turn</li>
+                <li><strong>Rows 63-66:</strong> Continue decreasing 1 st at neck edge each row</li>
+                <li>Fasten off</li>
+                <li>Rejoin yarn to opposite side and work to match, reversing shaping</li>
+            </ol>
+            
+            <h3>Sleeves (Make 2)</h3>
+            <h4>Cuff with Smaller Hook:</h4>
+            <ol>
+                <li>Ch 33 (35, 37, 39, 41, 43)</li>
+                <li><strong>Row 1:</strong> Sc in 2nd ch from hook, *FPsc, BPsc*, repeat across, turn</li>
+                <li><strong>Rows 2-8:</strong> Ch 1, *FPsc, BPsc*, repeat across, turn</li>
+                <li>Switch to larger hook</li>
+            </ol>
+            
+            <h4>Sleeve Body:</h4>
+            <ol>
+                <li><strong>Row 9:</strong> Ch 2, hdc in each st across, turn</li>
+                <li><strong>Row 10:</strong> Ch 2, 2 hdc in first st, hdc across to last st, 2 hdc in last st, turn</li>
+                <li><strong>Rows 11-15:</strong> Ch 2, hdc across, turn</li>
+                <li><strong>Row 16:</strong> Repeat Row 10 (increase row)</li>
+                <li>Continue working 5 rows even, then 1 increase row until sleeve measures 17 (17.5, 18, 18.5, 19, 19.5)" or desired length</li>
+                <li>Fasten off</li>
+            </ol>
+            
+            <h3>Assembly</h3>
+            <ol>
+                <li>Block all pieces to measurements</li>
+                <li>Sew shoulder seams using mattress stitch</li>
+                <li>Mark sleeve placement (8-9" down from shoulder on each side)</li>
+                <li>Sew sleeves to armholes</li>
+                <li>Sew side seams and sleeve seams in one continuous line</li>
+            </ol>
+            
+            <h3>Neck Ribbing</h3>
+            <ol>
+                <li>With smaller hook and RS facing, join yarn at back neck</li>
+                <li><strong>Rnd 1:</strong> Ch 1, work sc evenly around neck opening, join</li>
+                <li><strong>Rnds 2-6:</strong> Ch 1, work in ribbing st pattern (FPsc, BPsc) around, join</li>
+                <li>Fasten off and weave in ends</li>
+            </ol>
+            
+            <h3>Bottom Ribbing</h3>
+            <ol>
+                <li>With smaller hook and RS facing, join yarn at side seam</li>
+                <li><strong>Rnd 1:</strong> Ch 1, sc evenly around bottom edge, join</li>
+                <li><strong>Rnds 2-6:</strong> Ch 1, work in ribbing st pattern around, join</li>
+                <li>Fasten off</li>
+            </ol>
+            
+            <h3>Pro Tips</h3>
+            <ul>
+                <li>✨ Try on as you go to check fit before seaming</li>
+                <li>✨ Block pieces before assembly for professional finish</li>
+                <li>✨ Use mattress stitch for invisible seams</li>
+                <li>✨ Make sleeves longer or shorter to preference</li>
+            </ul>
+            
+            <p><strong>Enjoy your cozy new sweater! 🧶</strong></p>
+        `
+    };
+}
+
+function generateCardiganPattern(request) {
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted weight yarn (4) - 1400-2000 yards</li>
+                <li>5.5mm (I/9) crochet hook</li>
+                <li>5-7 buttons (3/4" diameter)</li>
+                <li>Yarn needle</li>
+                <li>Stitch markers</li>
+            </ul>
+            
+            <h3>Sizing</h3>
+            <p>S/M (L/XL, 2X/3X)</p>
+            <p><strong>Finished Bust:</strong> 40 (48, 56)" with 4-6" positive ease</p>
+            
+            <h3>Gauge</h3>
+            <p>14 stitches x 16 rows = 4 inches in half double crochet</p>
+            
+            <h3>Construction Note</h3>
+            <p>This cardigan is worked in one piece from the top down with raglan shaping</p>
+            
+            <h3>Yoke</h3>
+            <ol>
+                <li><strong>Foundation:</strong> Ch 50 (58, 66)</li>
+                <li><strong>Row 1:</strong> Hdc in 3rd ch from hook, hdc in next 6 (8, 10) sts (right front), 2 hdc in next st, hdc in next 8 (10, 12) sts (sleeve), 2 hdc in next st, hdc in next 14 (18, 22) sts (back), 2 hdc in next st, hdc in next 8 (10, 12) sts (sleeve), 2 hdc in next st, hdc in last 7 (9, 11) sts (left front), turn</li>
+                <li><strong>Row 2-20:</strong> Ch 2, hdc across, working 2 hdc in each marked increase st, turn</li>
+                <li>Continue raglan increases until yoke measures 7 (8, 9)" from beginning</li>
+            </ol>
+            
+            <h3>Divide for Body and Sleeves</h3>
+            <ol>
+                <li><strong>Next Row:</strong> Ch 2, hdc across front sts, ch 4 (underarm), skip sleeve sts, hdc across back sts, ch 4 (underarm), skip sleeve sts, hdc across remaining front sts, turn</li>
+                <li>Continue working back and forth on body sts only</li>
+            </ol>
+            
+            <h3>Body</h3>
+            <ol>
+                <li>Work even in hdc until body measures 14 (15, 16)" from underarm</li>
+                <li>Work 6 rows of ribbing (sc in BLO)</li>
+                <li>Fasten off</li>
+            </ol>
+            
+            <h3>Sleeves</h3>
+            <ol>
+                <li>Join yarn at underarm</li>
+                <li>Work in rounds, decreasing 2 sts every 8th round</li>
+                <li>Continue until sleeve measures 17 (18, 19)" or desired length</li>
+                <li>Work 8 rounds of ribbing</li>
+                <li>Fasten off</li>
+            </ol>
+            
+            <h3>Front Bands & Buttonholes</h3>
+            <ol>
+                <li>Work sc evenly up right front, around neck, and down left front</li>
+                <li>On buttonhole band: *Sc 15, ch 2, skip 2 sts*, repeat for each buttonhole</li>
+                <li>Work 2 more rows of sc, working 2 sc in each ch-2 space</li>
+            </ol>
+            
+            <h3>Finishing</h3>
+            <ul>
+                <li>Weave in all ends</li>
+                <li>Block to measurements</li>
+                <li>Sew on buttons</li>
+            </ul>
+            
+            <p><strong>Your cardigan is ready to wear! 🧥</strong></p>
+        `
+    };
+}
+
+function generateScarfPattern(request) {
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted weight yarn (4) - 400-600 yards</li>
+                <li>5.5mm (I/9) crochet hook</li>
+                <li>Yarn needle</li>
+                <li>Scissors</li>
+            </ul>
+            
+            <h3>Finished Size</h3>
+            <p><strong>Dimensions:</strong> 8" wide x 60" long (adjustable)</p>
+            
+            <h3>Gauge</h3>
+            <p>14 stitches x 16 rows = 4 inches in pattern</p>
+            
+            <h3>Pattern Instructions</h3>
+            
+            <h4>Foundation:</h4>
+            <p>Ch 29 (or any odd number for desired width)</p>
+            
+            <h4>Row 1:</h4>
+            <p>Sc in 2nd ch from hook, *ch 1, skip 1 ch, sc in next ch*, repeat across, turn [28 sts]</p>
+            
+            <h4>Row 2:</h4>
+            <p>Ch 1, sc in first sc, *ch 1, skip ch-1 space, sc in next sc*, repeat across, turn</p>
+            
+            <h4>Rows 3-240:</h4>
+            <p>Repeat Row 2 until scarf measures 60" or desired length</p>
+            
+            <h4>Border (Optional):</h4>
+            <ol>
+                <li>Work sc evenly around all edges</li>
+                <li>Add fringe to ends if desired (cut 10" lengths, fold in half, pull through edge)</li>
+            </ol>
+            
+            <p>Fasten off and weave in ends.</p>
+            
+            <h3>Infinity Scarf Variation</h3>
+            <p>Work to 50" length, twist once, join ends with sl st to create infinity loop</p>
+            
+            <h3>Pattern Variations</h3>
+            <ul>
+                <li>🌈 <strong>Striped:</strong> Change colors every 10-15 rows</li>
+                <li>✨ <strong>Textured:</strong> Alternate rows of hdc and dc</li>
+                <li>🎨 <strong>Ombre:</strong> Use gradient yarn for color shift</li>
+            </ul>
+            
+            <p><strong>Stay cozy! 🧣</strong></p>
+        `
+    };
+}
+
+function generateHatPattern(request) {
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted weight yarn (4) - 200 yards</li>
+                <li>5.5mm (I/9) crochet hook</li>
+                <li>Yarn needle</li>
+                <li>Stitch marker</li>
+            </ul>
+            
+            <h3>Sizing</h3>
+            <p>Pattern written for: Child (Teen/Adult S, Adult M/L)</p>
+            <p><strong>Circumference:</strong> 18 (20, 22)"</p>
+            
+            <h3>Gauge</h3>
+            <p>14 stitches x 16 rounds = 4 inches in hdc</p>
+            
+            <h3>Crown</h3>
+            <ol>
+                <li><strong>Rnd 1:</strong> Magic ring, ch 2, 10 hdc in ring, join [10]</li>
+                <li><strong>Rnd 2:</strong> Ch 2, 2 hdc in each st around, join [20]</li>
+                <li><strong>Rnd 3:</strong> Ch 2, *hdc, 2 hdc in next st*, repeat around, join [30]</li>
+                <li><strong>Rnd 4:</strong> Ch 2, *hdc in next 2 sts, 2 hdc in next st*, repeat around, join [40]</li>
+                <li><strong>Rnd 5:</strong> Ch 2, *hdc in next 3 sts, 2 hdc in next st*, repeat around, join [50]</li>
+                <li>For Adult sizes: Continue increasing until you have 60 (70) sts</li>
+            </ol>
+            
+            <h3>Sides</h3>
+            <ol>
+                <li><strong>Rnds 6-20:</strong> Ch 2, hdc in each st around, join</li>
+                <li>Work even until hat measures 7 (8, 9)" from top or desired length</li>
+            </ol>
+            
+            <h3>Brim</h3>
+            <ol>
+                <li><strong>Rnd 21:</strong> Ch 1, sc in BLO in each st around, join</li>
+                <li><strong>Rnds 22-24:</strong> Ch 1, sc in each st around, join</li>
+                <li>Fasten off</li>
+            </ol>
+            
+            <h3>Optional Pom Pom</h3>
+            <ol>
+                <li>Wrap yarn around 4 fingers 60 times</li>
+                <li>Tie tightly in center</li>
+                <li>Cut loops and trim to shape</li>
+                <li>Attach to top of hat</li>
+            </ol>
+            
+            <h3>Variations</h3>
+            <ul>
+                <li>🎀 <strong>Slouchy:</strong> Add 10 more stitches and 2" length</li>
+                <li>🌟 <strong>Textured:</strong> Work in FPdc/BPdc for ribbing</li>
+                <li>🎨 <strong>Striped:</strong> Change colors every 3 rounds</li>
+            </ul>
+            
+            <p><strong>Stay warm! 🧢</strong></p>
+        `
+    };
+}
+
+function generateShawlPattern(request) {
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Fingering or Sport weight yarn - 600-800 yards</li>
+                <li>4.0mm (G/6) crochet hook</li>
+                <li>Yarn needle</li>
+                <li>Stitch markers</li>
+                <li>Blocking pins</li>
+            </ul>
+            
+            <h3>Finished Size</h3>
+            <p><strong>Wingspan:</strong> 60" across x 30" deep</p>
+            
+            <h3>Gauge</h3>
+            <p>18 stitches x 10 rows = 4 inches in pattern (after blocking)</p>
+            
+            <h3>Triangle Shawl Pattern</h3>
+            
+            <h4>Foundation:</h4>
+            <p>Ch 4, sl st to first ch to form ring</p>
+            
+            <h4>Row 1:</h4>
+            <p>Ch 3 (counts as dc), 2 dc in ring, ch 2, 3 dc in ring, turn</p>
+            
+            <h4>Row 2:</h4>
+            <p>Ch 3, 2 dc in first st, ch 1, (3 dc, ch 2, 3 dc) in ch-2 space (center), ch 1, 3 dc in top of ch-3, turn</p>
+            
+            <h4>Row 3:</h4>
+            <p>Ch 3, 2 dc in first st, *ch 1, 3 dc in ch-1 space*, repeat across to center, ch 1, (3 dc, ch 2, 3 dc) in ch-2 space, *ch 1, 3 dc in ch-1 space*, repeat to end, ch 1, 3 dc in top of ch-3, turn</p>
+            
+            <h4>Rows 4-60:</h4>
+            <p>Repeat Row 3 until shawl measures 30" deep or desired size</p>
+            
+            <h4>Border:</h4>
+            <ol>
+                <li><strong>Rnd 1:</strong> Ch 1, work sc evenly around all edges, working 5 sc in point</li>
+                <li><strong>Rnd 2:</strong> *Ch 3, skip 1 st, sl st in next st*, repeat around</li>
+            </ol>
+            
+            <p>Fasten off</p>
+            
+            <h3>Blocking</h3>
+            <ol>
+                <li>Soak shawl in lukewarm water for 20 minutes</li>
+                <li>Gently squeeze out water (don't wring)</li>
+                <li>Pin to measurements on blocking mats</li>
+                <li>Let dry completely (24-48 hours)</li>
+            </ol>
+            
+            <h3>Wearing Options</h3>
+            <ul>
+                <li>🎀 Point at back, drape over shoulders</li>
+                <li>🌟 Point at front, wrap around</li>
+                <li>✨ Fold in half, wear as large scarf</li>
+            </ul>
+            
+            <p><strong>Elegant and warm! 🧣</strong></p>
+        `
+    };
+}
+
+function generateSocksPattern(request) {
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Fingering weight sock yarn - 400 yards</li>
+                <li>3.5mm (E/4) crochet hook</li>
+                <li>Yarn needle</li>
+                <li>Stitch marker</li>
+            </ul>
+            
+            <h3>Sizing</h3>
+            <p>Women's S/M (M/L, Men's L/XL)</p>
+            <p><strong>Foot length:</strong> 8 (9, 10)"</p>
+            
+            <h3>Gauge</h3>
+            <p>22 stitches x 24 rounds = 4 inches in sc</p>
+            
+            <h3>Cuff (Worked Top-Down)</h3>
+            <ol>
+                <li>Ch 48 (52, 56), join with sl st</li>
+                <li><strong>Rnds 1-10:</strong> *FPsc, BPsc*, repeat around for ribbing</li>
+            </ol>
+            
+            <h3>Leg</h3>
+            <ol>
+                <li><strong>Rnds 11-25:</strong> Sc in each st around [48, 52, 56 sts]</li>
+            </ol>
+            
+            <h3>Heel Flap</h3>
+            <ol>
+                <li>Work back and forth on half the stitches (24, 26, 28 sts)</li>
+                <li><strong>Rows 1-20:</strong> Ch 1, sc across, turn</li>
+            </ol>
+            
+            <h3>Heel Turn</h3>
+            <ol>
+                <li><strong>Row 1:</strong> Sc in 14 (15, 16) sts, sc2tog, sc, turn</li>
+                <li><strong>Row 2:</strong> Sc in 5 sts, sc2tog, sc, turn</li>
+                <li><strong>Rows 3-8:</strong> Sc to 1 st before gap, sc2tog (closing gap), sc, turn</li>
+            </ol>
+            
+            <h3>Foot</h3>
+            <ol>
+                <li>Work in rounds, picking up stitches along heel flap</li>
+                <li>Continue until foot measures 6 (7, 8)" from back of heel</li>
+            </ol>
+            
+            <h3>Toe Shaping</h3>
+            <ol>
+                <li><strong>Rnd 1:</strong> *Sc 6, sc2tog*, repeat around</li>
+                <li><strong>Rnd 2:</strong> Sc around</li>
+                <li><strong>Rnd 3:</strong> *Sc 5, sc2tog*, repeat around</li>
+                <li>Continue decreasing every other round until 16 sts remain</li>
+                <li>Cut yarn, thread through remaining sts, pull tight</li>
+            </ol>
+            
+            <p>Weave in ends. Make second sock to match!</p>
+            
+            <p><strong>Cozy toes! 🧦</strong></p>
+        `
+    };
+}
+
+function generateMittensPattern(request) {
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted weight yarn (4) - 200 yards</li>
+                <li>5.0mm (H/8) crochet hook</li>
+                <li>Yarn needle</li>
+                <li>Stitch marker</li>
+            </ul>
+            
+            <h3>Sizing</h3>
+            <p>Child (Women's S/M, Women's L/Men's M, Men's L/XL)</p>
+            
+            <h3>Gauge</h3>
+            <p>16 stitches x 18 rounds = 4 inches in hdc</p>
+            
+            <h3>Cuff</h3>
+            <ol>
+                <li>Ch 28 (32, 36, 40), join with sl st</li>
+                <li><strong>Rnds 1-8:</strong> *FPhdc, BPhdc*, repeat around for ribbing</li>
+            </ol>
+            
+            <h3>Hand</h3>
+            <ol>
+                <li><strong>Rnds 9-15:</strong> Hdc in each st around [28, 32, 36, 40 sts]</li>
+            </ol>
+            
+            <h3>Thumb Gusset</h3>
+            <ol>
+                <li><strong>Rnd 16:</strong> Hdc 14 (16, 18, 20), 2 hdc in next st, hdc 1, 2 hdc in next st, hdc to end</li>
+                <li><strong>Rnd 17:</strong> Hdc around</li>
+                <li><strong>Rnd 18:</strong> Hdc 14 (16, 18, 20), 2 hdc in next st, hdc 3, 2 hdc in next st, hdc to end</li>
+                <li>Continue increasing 2 sts in thumb gusset every other round until thumb has 12 (14, 16, 18) sts</li>
+            </ol>
+            
+            <h3>Thumb Opening</h3>
+            <ol>
+                <li><strong>Next Rnd:</strong> Hdc 14 (16, 18, 20), ch 2, skip thumb sts, hdc to end</li>
+                <li><strong>Rnds 22-30:</strong> Hdc around [28, 32, 36, 40 sts]</li>
+            </ol>
+            
+            <h3>Top Shaping</h3>
+            <ol>
+                <li><strong>Rnd 31:</strong> *Hdc 5, hdc2tog*, repeat around</li>
+                <li><strong>Rnd 32:</strong> Hdc around</li>
+                <li><strong>Rnd 33:</strong> *Hdc 4, hdc2tog*, repeat around</li>
+                <li>Continue decreasing until 8 sts remain</li>
+                <li>Cut yarn, pull through remaining sts</li>
+            </ol>
+            
+            <h3>Thumb</h3>
+            <ol>
+                <li>Join yarn at thumb opening</li>
+                <li>Work 12 (14, 16, 18) hdc around, picking up 2 sts from ch-2 space</li>
+                <li>Work even for 8 (10, 12, 14) rounds</li>
+                <li>Decrease each round until 6 sts remain</li>
+                <li>Close top same as hand</li>
+            </ol>
+            
+            <p>Make second mitten to match!</p>
+            
+            <p><strong>Warm hands! 🧤</strong></p>
+        `
+    };
+}
+
+function generateSlippersPattern(request) {
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Bulky weight yarn (5) - 200-300 yards</li>
+                <li>6.5mm (K/10.5) crochet hook</li>
+                <li>Yarn needle</li>
+                <li>Non-slip fabric paint or purchased sole grips</li>
+            </ul>
+            
+            <h3>Sizing</h3>
+            <p>Women's 5-6 (7-8, 9-10) / Men's (8-9, 10-11)</p>
+            
+            <h3>Gauge</h3>
+            <p>12 stitches x 14 rounds = 4 inches in sc</p>
+            
+            <h3>Sole</h3>
+            <ol>
+                <li>Ch 12 (14, 16)</li>
+                <li><strong>Rnd 1:</strong> Sc in 2nd ch from hook, sc in next 10 (12, 14) ch, 5 sc in last ch, working on opposite side of ch, sc in next 10 (12, 14) ch, 4 sc in same st as first sc, join</li>
+                <li><strong>Rnd 2:</strong> Ch 1, sc in first st, 2 sc in next st, sc 10 (12, 14), 2 sc in next 5 sts, sc 10 (12, 14), 2 sc in next 4 sts, join</li>
+                <li><strong>Rnd 3:</strong> Ch 1, sc in each st around, join [40, 46, 52 sts]</li>
+            </ol>
+            
+            <h3>Sides</h3>
+            <ol>
+                <li><strong>Rnds 4-8:</strong> Ch 1, working in BLO, sc in each st around, join</li>
+            </ol>
+            
+            <h3>Toe Shaping</h3>
+            <ol>
+                <li><strong>Rnd 9:</strong> Ch 1, sc 18 (21, 24), [sc2tog] 4 times, sc to end, join</li>
+                <li><strong>Rnd 10:</strong> Ch 1, sc 18 (21, 24), [sc2tog] 2 times, sc to end, join</li>
+                <li><strong>Rnd 11:</strong> Ch 1, sc around, join</li>
+            </ol>
+            
+            <h3>Ankle Cuff</h3>
+            <ol>
+                <li><strong>Rnds 12-16:</strong> Ch 1, sc around, join</li>
+                <li>For folded cuff: Work 4 more rounds and fold over</li>
+                <li>Fasten off</li>
+            </ol>
+            
+            <h3>Finishing</h3>
+            <ul>
+                <li>Weave in all ends</li>
+                <li>Apply non-slip dots to bottom of sole</li>
+                <li>Optional: Add pom poms or decorative stitching</li>
+            </ul>
+            
+            <p>Make second slipper to match!</p>
+            
+            <p><strong>Cozy feet! 🥿</strong></p>
+        `
+    };
+}
+
+function generateBagPattern(request) {
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted weight cotton yarn - 400-600 yards</li>
+                <li>5.5mm (I/9) crochet hook</li>
+                <li>Yarn needle</li>
+                <li>Optional: Fabric for lining, magnetic snap</li>
+            </ul>
+            
+            <h3>Finished Size</h3>
+            <p><strong>Dimensions:</strong> 12" wide x 14" tall x 4" deep</p>
+            
+            <h3>Gauge</h3>
+            <p>14 stitches x 16 rounds = 4 inches in sc</p>
+            
+            <h3>Base</h3>
+            <ol>
+                <li>Ch 25</li>
+                <li><strong>Rnd 1:</strong> Sc in 2nd ch from hook, sc 23, 3 sc in last ch, working on opposite side, sc 23, 2 sc in first ch, join [52 sts]</li>
+                <li><strong>Rnd 2:</strong> Ch 1, 2 sc in first st, sc 23, 2 sc in next 3 sts, sc 23, 2 sc in next 2 sts, join [58 sts]</li>
+                <li><strong>Rnd 3:</strong> Ch 1, sc in each st around, join [58 sts]</li>
+            </ol>
+            
+            <h3>Sides</h3>
+            <ol>
+                <li><strong>Rnds 4-30:</strong> Ch 1, sc in BLO in each st around, join</li>
+                <li>Continue until bag measures 14" tall</li>
+            </ol>
+            
+            <h3>Top Border</h3>
+            <ol>
+                <li><strong>Rnd 31:</strong> Ch 1, sc in each st around, join</li>
+                <li><strong>Rnd 32:</strong> Ch 1, *sc in next 3 sts, ch 2, skip 2 sts* (for eyelet row), repeat around, join</li>
+                <li><strong>Rnd 33:</strong> Ch 1, sc in each st and 2 sc in each ch-2 space around, join</li>
+            </ol>
+            
+            <h3>Handles (Make 2)</h3>
+            <ol>
+                <li>Ch 50 (or desired length)</li>
+                <li><strong>Row 1:</strong> Sc in 2nd ch from hook and across, turn [49 sc]</li>
+                <li><strong>Rows 2-4:</strong> Ch 1, sc in each st across, turn</li>
+                <li>Fasten off, leaving long tail for sewing</li>
+            </ol>
+            
+            <h3>Assembly</h3>
+            <ol>
+                <li>Sew handles to inside of bag, spacing evenly</li>
+                <li>Reinforce handle attachment with extra stitching</li>
+                <li>Optional: Sew in fabric lining and add magnetic snap closure</li>
+                <li>Weave in all ends</li>
+            </ol>
+            
+            <h3>Variations</h3>
+            <ul>
+                <li>🌟 <strong>Market Mesh:</strong> Use ch-1, skip 1 pattern for breathable mesh</li>
+                <li>🎨 <strong>Striped:</strong> Change colors every 5 rounds</li>
+                <li>✨ <strong>With Pockets:</strong> Add exterior pockets before finishing</li>
+            </ul>
+            
+            <p><strong>Perfect for shopping or beach! 👜</strong></p>
+        `
+    };
+}
+
+function generateGrannySquarePattern(request) {
+    return {
+        title: `Complete ${capitalize(request)} Pattern`,
+        content: `
+            <h3>Materials Needed</h3>
+            <ul>
+                <li>Worsted weight yarn in desired colors</li>
+                <li>5.0mm (H/8) crochet hook</li>
+                <li>Yarn needle</li>
+            </ul>
+            
+            <h3>Finished Size</h3>
+            <p>Each square: 6" x 6" (adjustable)</p>
+            
+            <h3>Gauge</h3>
+            <p>Gauge is flexible for granny squares</p>
+            
+            <h3>Traditional Granny Square</h3>
+            
+            <h4>Round 1 (Center):</h4>
+            <ol>
+                <li>With first color, ch 4, sl st to first ch to form ring</li>
+                <li>Ch 3 (counts as dc), 2 dc in ring, ch 2</li>
+                <li>*3 dc in ring, ch 2*, repeat 2 more times</li>
+                <li>Join with sl st to top of ch-3 [4 groups of 3-dc with 4 corners]</li>
+            </ol>
+            
+            <h4>Round 2:</h4>
+            <ol>
+                <li>Sl st to first ch-2 space (corner)</li>
+                <li>Ch 3, (2 dc, ch 2, 3 dc) in same space (corner made)</li>
+                <li>*Ch 1, (3 dc, ch 2, 3 dc) in next corner space*, repeat around</li>
+                <li>Ch 1, join with sl st to top of ch-3</li>
+                <li>Optional: Change color</li>
+            </ol>
+            
+            <h4>Round 3:</h4>
+            <ol>
+                <li>Sl st to first corner space</li>
+                <li>Ch 3, (2 dc, ch 2, 3 dc) in corner</li>
+                <li>*Ch 1, 3 dc in next ch-1 space, ch 1, (3 dc, ch 2, 3 dc) in corner*, repeat around</li>
+                <li>Ch 1, 3 dc in last ch-1 space, ch 1, join</li>
+            </ol>
+            
+            <h4>Round 4:</h4>
+            <ol>
+                <li>Continue pattern: work (3 dc, ch 2, 3 dc) in each corner</li>
+                <li>Work 3 dc in each ch-1 space along sides</li>
+                <li>Ch 1 between each 3-dc group</li>
+                <li>Add more rounds for larger squares</li>
+            </ol>
+            
+            <h3>Joining Granny Squares</h3>
+            
+            <h4>Method 1 - Whip Stitch:</h4>
+            <ol>
+                <li>Place squares wrong sides together</li>
+                <li>Whip stitch through back loops only</li>
+                <li>Creates a decorative ridge on right side</li>
+            </ol>
+            
+            <h4>Method 2 - Slip Stitch Join:</h4>
+            <ol>
+                <li>Hold squares right sides together</li>
+                <li>Sl st through both loops of both squares</li>
+                <li>Creates flat, invisible seam</li>
+            </ol>
+            
+            <h4>Method 3 - Join-As-You-Go:</h4>
+            <ol>
+                <li>On last round of second square, join to first square</li>
+                <li>Instead of ch-2 at corner, ch 1, sl st into corresponding corner of first square, ch 1</li>
+                <li>Continue joining along edge as you crochet</li>
+            </ol>
+            
+            <h3>Project Ideas Using Granny Squares</h3>
+            <ul>
+                <li>🛏️ <strong>Blankets:</strong> Make 30-50 squares and join</li>
+                <li>👜 <strong>Bags:</strong> Join 8-10 squares for tote</li>
+                <li>🧥 <strong>Cardigans:</strong> Join for panels, add sleeves</li>
+                <li>🧣 <strong>Scarves:</strong> Join 3-4 squares lengthwise</li>
+                <li>🛋️ <strong>Pillows:</strong> Join 2 squares, stuff, seam</li>
+                <li>🧸 <strong>Patchwork:</strong> Cover anything with squares!</li>
+            </ul>
+            
+            <h3>Color Combinations</h3>
+            <ul>
+                <li>🌈 <strong>Rainbow:</strong> Each square different color</li>
+                <li>🎨 <strong>Ombre:</strong> Gradient from light to dark</li>
+                <li>⬜ <strong>Two-tone:</strong> Alternate colors each round</li>
+                <li>🌟 <strong>Scrappy:</strong> Use all leftover yarn</li>
+            </ul>
+            
+            <h3>Tips for Perfect Squares</h3>
+            <ul>
+                <li>✨ Keep tension consistent</li>
+                <li>✨ Count stitches in each round</li>
+                <li>✨ Block squares before joining</li>
+                <li>✨ Start and end yarns in same corner</li>
+                <li>✨ Use same weight yarn for all squares</li>
+            </ul>
+            
+            <p><strong>Endless possibilities with granny squares! 🌈</strong></p>
         `
     };
 }
