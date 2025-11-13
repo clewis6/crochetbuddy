@@ -2121,12 +2121,11 @@ document.querySelectorAll('.btn-primary, .category-btn, .generate-pattern-btn').
     });
 });
 
-// Parallax effect for hero section
+// Parallax effect for hero section (subtle movement only)
 window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
     const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = Math.max(1 - scrolled / 600, 0);
+    if (hero && scrolled < 500) {
+        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
     }
 });
