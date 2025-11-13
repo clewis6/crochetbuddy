@@ -560,6 +560,15 @@ body.dark-mode #pattern-search::placeholder {
 body.dark-mode .favorites-list {
     background: #16213e;
     color: #fff;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .favorites-list .fav-item {
+    color: #fff !important;
+}
+
+body.dark-mode .favorites-list > div {
+    border-bottom-color: #1a4d7a !important;
 }
 
 body.dark-mode ::-webkit-scrollbar-track {

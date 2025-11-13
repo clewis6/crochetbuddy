@@ -2769,43 +2769,29 @@ class PatternFavorites {
     }
     
     createFavoritesDropdown() {
-        const header = document.querySelector('header .container');
-        if (!header) return;
+        const nav = document.querySelector('header nav');
+        if (!nav) return;
         
-        const favoritesDiv = document.createElement('div');
-        favoritesDiv.className = 'favorites-dropdown';
-        favoritesDiv.style.cssText = `
+        // Create link element to match existing nav links
+        const favLink = document.createElement('a');
+        favLink.href = '#favorites';
+        favLink.className = 'nav-link';
+        favLink.innerHTML = '❤️ My Patterns';
+        favLink.style.cssText = `
             position: relative;
-            display: inline-block;
-            margin-left: 20px;
-        `;
-        
-        const favBtn = document.createElement('button');
-        favBtn.innerHTML = '❤️ My Patterns';
-        favBtn.className = 'btn-favorites';
-        favBtn.style.cssText = `
-            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
-            transition: all 0.3s ease;
         `;
         
         const dropdown = document.createElement('div');
         dropdown.className = 'favorites-list';
         dropdown.style.cssText = `
             position: absolute;
-            top: 45px;
+            top: 100%;
             right: 0;
+            margin-top: 10px;
             background: white;
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-            min-width: 250px;
+            min-width: 280px;
             max-width: 350px;
             max-height: 400px;
             overflow-y: auto;
@@ -2814,23 +2800,29 @@ class PatternFavorites {
             padding: 10px;
         `;
         
-        favBtn.addEventListener('click', (e) => {
+        favLink.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
+            
+            // Close all other dropdowns if any
+            document.querySelectorAll('.favorites-list').forEach(d => {
+                if (d !== dropdown) d.style.display = 'none';
+            });
+            
             dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
             this.updateUI();
         });
         
-        document.addEventListener('click', () => {
-            dropdown.style.display = 'none';
+        document.addEventListener('click', (e) => {
+            if (!favLink.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
         });
         
-        favoritesDiv.appendChild(favBtn);
-        favoritesDiv.appendChild(dropdown);
+        favLink.appendChild(dropdown);
         
-        const nav = header.querySelector('nav');
-        if (nav) {
-            nav.appendChild(favoritesDiv);
-        }
+        // Add to nav - insert before the last link or just append
+        nav.appendChild(favLink);
         
         this.dropdownElement = dropdown;
         this.updateUI();
