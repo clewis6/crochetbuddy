@@ -2900,9 +2900,6 @@ class PatternFavorites {
     }
 }
 
-// Initialize favorites system
-const patternFavorites = new PatternFavorites();
-
 // 2. DARK MODE TOGGLE
 class DarkMode {
     constructor() {
@@ -2971,9 +2968,6 @@ class DarkMode {
         }
     }
 }
-
-// Initialize dark mode
-const darkMode = new DarkMode();
 
 // 3. PATTERN SEARCH & FILTER
 class PatternSearch {
@@ -3067,9 +3061,6 @@ class PatternSearch {
     }
 }
 
-// Initialize pattern search
-const patternSearch = new PatternSearch();
-
 // 4. SHARE PATTERN FEATURE
 function addShareButton() {
     const patternTitle = document.querySelector('#pattern-output h2');
@@ -3155,25 +3146,53 @@ function showNotification(message) {
     }, 2500);
 }
 
-// Add share button when pattern is generated
-const patternOutputObserver = new MutationObserver(() => {
-    addShareButton();
-});
+// ============================================
+// INITIALIZE ALL ADVANCED FEATURES
+// ============================================
 
-const patternOutputElement = document.getElementById('pattern-output');
-if (patternOutputElement) {
-    patternOutputObserver.observe(patternOutputElement, { childList: true, subtree: true });
+// Wait for DOM to be fully loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeAdvancedFeatures);
+} else {
+    // DOM is already loaded
+    initializeAdvancedFeatures();
 }
 
-// Check for shared pattern in URL
-window.addEventListener('load', () => {
+function initializeAdvancedFeatures() {
+    console.log('🚀 Initializing Crochet Buddy advanced features...');
+    
+    // Initialize favorites system
+    const patternFavorites = new PatternFavorites();
+    
+    // Initialize dark mode
+    const darkMode = new DarkMode();
+    
+    // Initialize pattern search
+    const patternSearch = new PatternSearch();
+    
+    // Add share button when pattern is generated
+    const patternOutputObserver = new MutationObserver(() => {
+        addShareButton();
+    });
+    
+    const patternOutputElement = document.getElementById('pattern-output');
+    if (patternOutputElement) {
+        patternOutputObserver.observe(patternOutputElement, { childList: true, subtree: true });
+    }
+    
+    // Check for shared pattern in URL
     const urlParams = new URLSearchParams(window.location.search);
     const sharedPattern = urlParams.get('pattern');
     if (sharedPattern) {
-        document.getElementById('pattern-input').value = decodeURIComponent(sharedPattern);
-        setTimeout(() => {
-            generatePattern();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 500);
+        const patternInput = document.getElementById('pattern-input');
+        if (patternInput) {
+            patternInput.value = decodeURIComponent(sharedPattern);
+            setTimeout(() => {
+                generatePattern();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 500);
+        }
     }
-});
+    
+    console.log('✅ Advanced features initialized successfully!');
+}
