@@ -284,13 +284,98 @@ async function generateCrochetPattern(request) {
 
 function generateAmigurumiPattern(request) {
     const itemName = request.replace(/amigurumi/gi, '').trim() || 'Character';
+    const isMonkey = /monkey|chimp|ape|gorilla/i.test(request);
+    const hasBanana = /banana/i.test(request);
+    const isBunny = /bunny|rabbit/i.test(request);
+    const isBear = /bear|teddy/i.test(request);
+    const isCat = /cat|kitten|kitty/i.test(request);
+    const isDog = /dog|puppy/i.test(request);
+    
+    // Character-specific customizations
+    let characterNotes = '';
+    let extraParts = '';
+    
+    if (isMonkey) {
+        characterNotes = `
+            <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <h4 style="color: #856404; margin-top: 0;">🐵 Monkey-Specific Customizations:</h4>
+                <ul style="color: #856404;">
+                    <li><strong>Ears:</strong> Make them larger and rounder (use pattern below but work 1-2 extra rounds)</li>
+                    <li><strong>Muzzle:</strong> Make it lighter colored (cream or tan) and slightly oval shaped</li>
+                    <li><strong>Tail:</strong> Make tail LONGER - work 15-20 rounds instead of 10 for a proper monkey tail</li>
+                    <li><strong>Arms & Legs:</strong> Keep them long and skinny - don't add extra increases</li>
+                    <li><strong>Face Details:</strong> Position eyes wide apart, add large smile with embroidery</li>
+                </ul>
+            </div>`;
+        
+        if (hasBanana) {
+            extraParts = `
+            <h3>🍌 BANANA ACCESSORY (Make 1)</h3>
+            <p><em>Use yellow yarn for banana, brown for stem</em></p>
+            <ol>
+                <li><strong>Rnd 1:</strong> With yellow, magic ring, 6 sc in ring [6]</li>
+                <li><strong>Rnd 2:</strong> Inc in each st around [12]</li>
+                <li><strong>Rnd 3:</strong> (Sc, inc) repeat 6 times [18]</li>
+                <li><strong>Rnds 4-8:</strong> Sc in each st around [18] (5 rounds)</li>
+                <li><strong>Rnd 9:</strong> (Sc, dec) repeat 6 times [12]</li>
+                <li><strong>Rnd 10:</strong> Sc in each st around [12]</li>
+                <li><strong>Rnds 11-14:</strong> Sc in each st around [12] (4 rounds)</li>
+                <li>Stuff lightly - banana should be slightly curved</li>
+                <li><strong>Rnd 15:</strong> Dec repeat 6 times [6]</li>
+                <li>Change to brown yarn</li>
+                <li><strong>Rnd 16:</strong> Sc in each st around [6]</li>
+                <li><strong>Rnd 17:</strong> Dec repeat 3 times [3]</li>
+                <li>Fasten off, close opening</li>
+                <li><strong>Shape the banana:</strong> Gently bend into curved banana shape while still slightly damp (steam lightly)</li>
+            </ol>
+            
+            <h4>Adding Brown "Spots" to Banana:</h4>
+            <ul>
+                <li>With brown yarn, embroider small dots randomly on banana</li>
+                <li>Use French knots or small stitches</li>
+                <li>Add 3-5 spots for realistic look</li>
+            </ul>
+            
+            <h4>Attaching Banana to Monkey:</h4>
+            <ul>
+                <li><strong>Option 1:</strong> Sew banana into monkey's hand/arm permanently</li>
+                <li><strong>Option 2:</strong> Leave removable - tuck between arm and body</li>
+                <li><strong>Option 3:</strong> Add small snap or velcro to hand and banana for attachment</li>
+            </ul>`;
+        }
+    } else if (isBunny) {
+        characterNotes = `
+            <div style="background: #d1ecf1; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <h4 style="color: #0c5460; margin-top: 0;">🐰 Bunny-Specific Customizations:</h4>
+                <ul style="color: #0c5460;">
+                    <li><strong>Ears:</strong> Make them LONG - work ear pattern but double the length (work rounds 1-3 twice)</li>
+                    <li><strong>Tail:</strong> Make a small fluffy pompom instead of the tube tail pattern</li>
+                    <li><strong>Feet:</strong> Add pink embroidered paw pads</li>
+                    <li><strong>Nose:</strong> Embroider a pink triangle nose</li>
+                </ul>
+            </div>`;
+    } else if (isBear) {
+        characterNotes = `
+            <div style="background: #f8d7da; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <h4 style="color: #721c24; margin-top: 0;">🧸 Teddy Bear Customizations:</h4>
+                <ul style="color: #721c24;">
+                    <li><strong>Ears:</strong> Make round ears, attach to top sides of head</li>
+                    <li><strong>Muzzle:</strong> Use contrasting color (light brown/cream)</li>
+                    <li><strong>Body:</strong> Make slightly rounder - work 2 extra rounds at widest point</li>
+                    <li><strong>Optional:</strong> Add a bow tie around neck for classic teddy look</li>
+                </ul>
+            </div>`;
+    }
+    
     return {
         title: `Professional Amigurumi Pattern: ${capitalize(itemName)}`,
         content: `
+            ${characterNotes}
+            
             <h3>Materials Needed</h3>
             <ul>
                 <li>Worsted weight yarn (4) in main color - 100-150g (approximately 200-300 yards)</li>
-                <li>Small amounts (10-20g each) of contrasting colors for details</li>
+                <li>Small amounts (10-20g each) of contrasting colors for details${isMonkey && hasBanana ? ' - <strong>Including YELLOW for banana!</strong>' : ''}</li>
                 <li>4.0mm (G/6) crochet hook (or size needed to obtain gauge)</li>
                 <li>3.5mm (E/4) crochet hook for tighter areas (optional)</li>
                 <li>Yarn needle with large eye for sewing and embroidery</li>
@@ -558,7 +643,9 @@ function generateAmigurumiPattern(request) {
                 <li>⚠️ Regularly inspect for wear and re-secure any loose parts</li>
             </ul>
             
-            <p><strong>🧶 Enjoy creating your adorable amigurumi! With practice, you'll develop your own style and techniques. Don't be afraid to experiment! ✨</strong></p>
+            ${extraParts}
+            
+            <p><strong>🧶 Enjoy creating your adorable amigurumi${isMonkey && hasBanana ? ' monkey with banana' : ''}! With practice, you'll develop your own style and techniques. Don't be afraid to experiment! ✨</strong></p>
         `
     };
 }
